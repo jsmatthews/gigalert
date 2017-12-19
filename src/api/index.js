@@ -13,6 +13,10 @@ export function fetchAllArtists() {
     return client.get('/artists');
 }
 
-export function fetchAllEvents(){
+export function fetchAllEvents() {
     return client.get('/events');
+}
+
+export function fetchArtist(artistId) {
+    return client.get(`/artists/${artistId}`);
 }

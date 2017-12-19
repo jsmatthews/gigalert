@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { fetchArtists } from '../../actions/index'
 import ArtistLink from '../Artists/ArtistLink'
@@ -12,7 +13,13 @@ class HomePage extends Component {
     }
 
     listPopularArtists() {
-        return this.props.artists.map(artist => <ArtistLink key={artist.id} {...artist} />)
+        return this.props.artists.map(artist => {
+            return (
+                <Link key={artist.id} to={`/artists/${artist.id}`}>
+                    <ArtistLink {...artist} />
+                </Link>
+            )
+        })
     }
 
     render() {
@@ -20,13 +27,13 @@ class HomePage extends Component {
             <div className='page home-page'>
                 {this.listPopularArtists()}
             </div>
-            )
+        )
     }
 }
 
 const mapStateToProps = (state) => {
-    const {artists} = state.artists
-    return {artists}
-            }
+    const { artists } = state.artists
+    return { artists }
+}
 
 export default connect(mapStateToProps)(HomePage)

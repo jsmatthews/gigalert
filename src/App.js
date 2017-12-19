@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar/Navbar'
-import ArtistsPage from './components/ArtistsPage'
-import EventsPage from './components/EventsPage'
 import HomePage from './components/HomePage/HomePage'
+import ArtistsPage from './components/Artists/ArtistsPage'
+import ArtistProfile from './components/Artists/ArtistProfile'
+import EventsPage from './components/EventsPage'
+
 import './App.css';
 
 class App extends Component {
@@ -14,6 +16,7 @@ class App extends Component {
                 <Navbar />
                 <Route path="/" exact component={HomePage} />
                 <Route path="/artists" exact component={ArtistsPage} />
+                <Route path="/artists/:artistId" component={ArtistProfile} />
                 <Route path="/events" component={EventsPage} />
             </div>
         );

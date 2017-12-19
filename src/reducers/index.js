@@ -12,6 +12,9 @@ export function artistsReducer(state = defaultArtists, action) {
         case 'FETCH_ALL_ARTISTS_SUCCEEDED': {
             return { ...state, artists: action.payload.artists }
         }
+        case 'FETCH_ARTIST_SUCCEEDED':{
+            return state;
+        }
         default: {
             return state;
         }
