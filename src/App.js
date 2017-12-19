@@ -7,28 +7,20 @@ import Navbar from './components/Navbar/Navbar'
 import ArtistsPage from './components/ArtistsPage'
 import EventsPage from './components/EventsPage'
 
+import { Route } from 'react-router-dom'
+
 
 class App extends Component {
-    componentDidMount() {
-        this.props.dispatch(fetchArtists())
-        this.props.dispatch(fetchEvents())
-    }
 
     render() {
         return (
             <div className="App">
                 <Navbar />
-                <ArtistsPage artists={this.props.artists} />
-                <EventsPage events={this.props.events} />
+                <Route path="/" exact component={ArtistsPage} />
+                <Route path="/events" component={EventsPage} />
             </div>
         );
     }
 }
 
-function mapStateToProps(state) {
-    const { artists } = state.artists;
-    const { events } = state.events;
-    return { artists, events };
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchEvents } from '../actions/index'
 
-const Event = ({id, name, location, date}) => (
+const Event = ({ id, name, location, date }) => (
     <div>
         {id} - {name} - {location} - {date}
     </div>
 )
 
-export default class EventsPage extends Component {
-    listEvents(){
-        return(
-            this.props.events.map(event => {
-                return <Event key={event.id} {...event} />
-            })
-        )
+class EventsPage extends Component {
+    componentDidMount() {
+        this.props.dispatch(fetchEvents())
     }
+
+    listEvents() {
+        return this.props.events.map(event => <Event key={event.id} {...event} />)
+    }
+    
     render() {
         return (
             <div>
@@ -22,3 +25,10 @@ export default class EventsPage extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    const { events } = state.events;
+    return { events };
+}
+
+export default connect(mapStateToProps)(EventsPage)

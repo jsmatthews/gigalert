@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchArtists } from '../actions/index'
 
 const Artist = ({ id, name }) => (
     <div>
@@ -6,7 +8,11 @@ const Artist = ({ id, name }) => (
     </div>
 )
 
-export default class ArtistsPage extends Component {
+class ArtistsPage extends Component {
+    componentDidMount(){
+        this.props.dispatch(fetchArtists());
+    }
+
     listArtists() {
         return this.props.artists.map(artist => <Artist key={artist.id} { ...artist } />)
     }
@@ -19,3 +25,10 @@ export default class ArtistsPage extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    const { artists } = state.artists;
+    return { artists };
+}
+
+export default connect(mapStateToProps)(ArtistsPage)
