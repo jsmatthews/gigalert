@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fetchArtists, fetchEvents } from './actions/index'
 
 import './App.css';
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar/Navbar'
 import ArtistsPage from './components/ArtistsPage'
 import EventsPage from './components/EventsPage'
 
