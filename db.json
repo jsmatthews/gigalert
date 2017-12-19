@@ -1,0 +1,21 @@
+{
+    "artists": [
+        {
+            "id": 1,
+            "name": "ZEDD"
+        },
+        {
+            "id": 2,
+            "name": "Marshmello"
+        }
+    ],
+    "events": [
+        {
+            "id": 1,
+            "name": "event 1",
+            "location": "Tokyo",
+            "artistId": 1,
+            "date": "2018-01-01"
+        }
+    ]
+}
