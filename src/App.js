@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { fetchArtists, fetchEvents } from './actions/index'
+import { Route } from 'react-router-dom'
 
-import './App.css';
 import Navbar from './components/Navbar/Navbar'
 import ArtistsPage from './components/ArtistsPage'
 import EventsPage from './components/EventsPage'
-
-import { Route } from 'react-router-dom'
-
+import HomePage from './components/HomePage/HomePage'
+import './App.css';
 
 class App extends Component {
-
     render() {
         return (
             <div className="App">
                 <Navbar />
-                <Route path="/" exact component={ArtistsPage} />
+                <Route path="/" exact component={HomePage} />
+                <Route path="/artists" exact component={ArtistsPage} />
                 <Route path="/events" component={EventsPage} />
             </div>
         );

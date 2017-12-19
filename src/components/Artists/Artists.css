@@ -1,0 +1,18 @@
+.artists-page{
+    display: flex;
+    justify-content: space-between;
+}
+
+.artist-link{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    background: #eee;
+}
+
+.artist-link-name{
+    font-size: 20px;
+    line-height: 34px;
+}

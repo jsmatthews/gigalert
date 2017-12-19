@@ -10,6 +10,7 @@ export default class Navbar extends Component {
                 <div className='logo'>
                     <NavLink to="/">GigAlert</NavLink>
                 </div>
+                <NavLink to="/artists">ARTISTS</NavLink>
                 <NavLink to="/events">EVENTS</NavLink>
             </div>
         )

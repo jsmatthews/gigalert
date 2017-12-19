@@ -1,25 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchArtists } from '../actions/index'
-
-const Artist = ({ id, name }) => (
-    <div>
-        {id} - {name}
-    </div>
-)
+import ArtistLink from './Artists/ArtistLink'
+import './Artists/Artists.css'
 
 class ArtistsPage extends Component {
-    componentDidMount(){
+    componentDidMount() {
         this.props.dispatch(fetchArtists());
     }
 
     listArtists() {
-        return this.props.artists.map(artist => <Artist key={artist.id} { ...artist } />)
+        return this.props.artists.map(artist => <ArtistLink key={artist.id} { ...artist } />)
     }
 
     render() {
         return (
-            <div>
+            <div className="page artists-page">
                 {this.listArtists()}
             </div>
         )
