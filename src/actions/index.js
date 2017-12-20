@@ -44,3 +44,18 @@ const fetchArtistSucceeded = (artist) => {
         payload: { artist }
     }
 }
+
+export function fetchArtistEvents(artistId){
+    return dispatch => {
+        api.fetchArtistEvents(artistId).then(resp => {
+            dispatch(fetchArtistEventsSucceeded(resp.data));
+        })
+    }
+}
+
+const fetchArtistEventsSucceeded = (events) => {
+    return {
+        type: 'FETCH_ARTIST_EVENTS_SUCCEEDED',
+        payload: { events }
+    }
+}

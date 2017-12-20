@@ -1,6 +1,7 @@
-
 const defaultArtists = {
-    artists: []
+    artists: [],
+    artistProfile: {},
+    artistEvents:[]
 }
 
 const defaultEvents = {
@@ -14,6 +15,9 @@ export function artistsReducer(state = defaultArtists, action) {
         }
         case 'FETCH_ARTIST_SUCCEEDED':{
             return {...state, artistProfile: action.payload.artist};
+        }
+        case 'FETCH_ARTIST_EVENTS_SUCCEEDED':{
+            return {...state, artistEvents: action.payload.events};
         }
         default: {
             return state;

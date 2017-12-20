@@ -20,3 +20,7 @@ export function fetchAllEvents() {
 export function fetchArtist(artistId) {
     return client.get(`/artists/${artistId}`);
 }
+
+export function fetchArtistEvents(artistId){
+    return client.get(`/events?artistId=${artistId}`);
+}
