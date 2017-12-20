@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchArtists } from '../../actions/index'
 import ArtistLink from './ArtistLink'
-import './Artists.css'
+import '../../styles/Artists.css'
 
 class ArtistsPage extends Component {
     componentDidMount() {

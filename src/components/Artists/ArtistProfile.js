@@ -1,28 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchArtists } from '../../actions/index'
+import { fetchArtist } from '../../actions/index'
 
 class ArtistProfile extends Component {
-    componentDidMount() {
-        // const { match: { params } } = this.props;
-        this.props.dispatch(fetchArtists())
-        console.log(this.props)
-        // console.log(this.props.artists)
+    constructor(props) {
+        super(props);
+        this.state = { selectedArtist: {} }
+    }
+
+    componentWillMount(){
+        this.props.dispatch(fetchArtist(this.props.match.params.artistId))
+    }
+
+    componentWillReceiveProps(nextProps){
+        if (nextProps.artistProfile !== null) {
+            this.setState({ selectedArtist: nextProps.artistProfile });
+        }
     }
 
     render() {
         return (
             <div className='artist-profile'>
-                PROFILE
+                {(this.state.selectedArtist) ? this.state.selectedArtist.name : "Not Defined"}
             </div>
         )
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const { artists } = state.artists;
-    console.log(state)
-    return { artists, params: ownProps.match.params }
+const mapStateToProps = (state) => {
+    const { artistProfile } = state.artists;
+    return { artistProfile }
 }
 
 export default connect(mapStateToProps)(ArtistProfile)

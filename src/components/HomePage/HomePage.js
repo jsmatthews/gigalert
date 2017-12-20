@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { fetchArtists } from '../../actions/index'
 import ArtistLink from '../Artists/ArtistLink'
 
-import './HomePage.css'
+import '../../styles/HomePage.css'
 
 class HomePage extends Component {
     componentDidMount() {

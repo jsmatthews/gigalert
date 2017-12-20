@@ -2,10 +2,9 @@ import * as api from '../api/index'
 
 export function fetchArtists() {
     return dispatch => {
-        api.fetchAllArtists()
-            .then(resp => {
-                dispatch(fetchAllArtistsSucceeded(resp.data))
-            })
+        api.fetchAllArtists().then(resp => {
+            dispatch(fetchAllArtistsSucceeded(resp.data))
+        })
     }
 };
 
@@ -18,10 +17,9 @@ const fetchAllArtistsSucceeded = (artists) => {
 
 export function fetchEvents() {
     return dispatch => {
-        api.fetchAllEvents()
-            .then(resp => {
-                dispatch(fetchAllEventsSucceeded(resp.data))
-            })
+        api.fetchAllEvents().then(resp => {
+            dispatch(fetchAllEventsSucceeded(resp.data))
+        })
     }
 }
 
@@ -34,10 +32,9 @@ const fetchAllEventsSucceeded = (events) => {
 
 export function fetchArtist(artistId) {
     return dispatch => {
-        api.fetchArtist(artistId)
-            .then(resp => {
-                dispatch(fetchArtistSucceeded(resp.data))
-            })
+        api.fetchArtist(artistId).then(resp => {
+            dispatch(fetchArtistSucceeded(resp.data))
+        })
     }
 }
 

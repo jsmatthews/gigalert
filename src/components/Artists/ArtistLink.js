@@ -1,5 +1,5 @@
 import React from 'react'
-import './Artists.css'
+import '../../styles/Artists.css'
 
 const ArtistLink = ({ id, name }) => (
     <div className="artist-link">
