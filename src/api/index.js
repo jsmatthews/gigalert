@@ -24,3 +24,7 @@ export function fetchArtist(artistId) {
 export function fetchArtistEvents(artistId){
     return client.get(`/events?artistId=${artistId}`);
 }
+
+export function signUpUser({email, password}){
+    return client.post(`/users`, {email: email, password: password})
+}

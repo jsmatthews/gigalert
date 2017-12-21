@@ -1,37 +1,48 @@
 {
-    "artists": [
-        {
-            "id": 1,
-            "name": "ZEDD",
-            "description":"A great artist and DJ!"
-        },
-        {
-            "id": 2,
-            "name": "Marshmello",
-            "description":"A great artist and DJ!"
-        }
-    ],
-    "events": [
-        {
-            "id": 1,
-            "name": "event 1",
-            "location": "Tokyo",
-            "artistId": 1,
-            "date": "2018-01-01"
-        },
-        {
-            "id": 2,
-            "name": "event 2",
-            "location": "Seoul",
-            "artistId": 1,
-            "date": "2018-01-02"
-        },
-        {
-            "id": 3,
-            "name": "Marshmello tour",
-            "location": "Seoul",
-            "artistId": 2,
-            "date": "2018-01-02"
-        }
-    ]
+  "artists": [
+    {
+      "id": 1,
+      "name": "ZEDD",
+      "description": "A great artist and DJ!"
+    },
+    {
+      "id": 2,
+      "name": "Marshmello",
+      "description": "A great artist and DJ!"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "name": "Zedd on tour!",
+      "location": "Tokyo",
+      "artistId": 1,
+      "date": "2018-01-01"
+    },
+    {
+      "id": 2,
+      "name": "event 2",
+      "location": "Seoul",
+      "artistId": 1,
+      "date": "2018-01-02"
+    },
+    {
+      "id": 3,
+      "name": "Marshmello tour",
+      "location": "Seoul",
+      "artistId": 2,
+      "date": "2018-01-02"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "James"
+    },
+    {
+      "email": "james@gmail.com",
+      "password": "james",
+      "id": 2
+    }
+  ]
 }

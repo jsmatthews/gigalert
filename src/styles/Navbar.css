@@ -1,0 +1,81 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+
+.logo{
+    font-size: 22px;
+}
+
+.logo a{
+    text-decoration: none;
+}
+
+.modal-container{
+    display: flex; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-background{
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.modal{
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 3px;
+    z-index: 999;
+    margin: 0 auto;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+}
+
+.modal-header{
+    height: 40px;
+    display: flex;
+    font-size: 24px;
+    align-items: center;
+}
+
+.form-text-input{
+    height: 50px;
+    padding: 5px;
+    width: 100%;
+    font-size: 16px;
+    margin: 5px 0;
+    border: 1px groove;
+}
+
+.form-text-input:focus{
+    border: 1px solid #0bb90b;
+}
+
+.form-row{
+    display: flex;
+}
+
+.submit-button{
+    width: 100%;
+    height: 40px;
+    -webkit-appearance: none;
+    font-size: 14px;
+}
+
+.submit-button:hover{
+    cursor: pointer;
+}

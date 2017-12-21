@@ -19,6 +19,9 @@ export function artistsReducer(state = defaultArtists, action) {
         case 'FETCH_ARTIST_EVENTS_SUCCEEDED':{
             return {...state, artistEvents: action.payload.events};
         }
+        case 'SIGN_UP_USER':{
+            return {...state, userInfo: action.payload};
+        }
         default: {
             return state;
         }

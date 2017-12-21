@@ -45,7 +45,7 @@ const fetchArtistSucceeded = (artist) => {
     }
 }
 
-export function fetchArtistEvents(artistId){
+export function fetchArtistEvents(artistId) {
     return dispatch => {
         api.fetchArtistEvents(artistId).then(resp => {
             dispatch(fetchArtistEventsSucceeded(resp.data));
@@ -57,5 +57,25 @@ const fetchArtistEventsSucceeded = (events) => {
     return {
         type: 'FETCH_ARTIST_EVENTS_SUCCEEDED',
         payload: { events }
+    }
+}
+
+export function signUpUser(userInfo) {
+    return dispatch => {
+        api.signUpUser(userInfo).then(resp => {
+            dispatch(signUpSucceeded());
+        })
+    }
+}
+
+const signUpSucceeded = () => {
+    return {
+        type: 'SIGN_UP_USER_SUCCEEDED',
+    }
+}
+
+const signUpFailed = () => {
+    return {
+        type: 'SIGN_UP_USER_FAILED',
     }
 }
