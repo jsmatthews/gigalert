@@ -6,14 +6,14 @@ import { Provider } from 'react-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
-import { artistsReducer, eventsReducer } from './reducers/index'
+import { artistsReducer, eventsReducer, usersReducer } from './reducers/index'
 
 import { BrowserRouter } from 'react-router-dom'
 
 import './styles/index.css';
 import App from './containers/App';
 
-const rootReducer = combineReducers({artists: artistsReducer, events: eventsReducer})
+const rootReducer = combineReducers({ artists: artistsReducer, events: eventsReducer, users: usersReducer })
 
 const store = createStore(
     rootReducer,

@@ -62,20 +62,60 @@ const fetchArtistEventsSucceeded = (events) => {
 
 export function signUpUser(userInfo) {
     return dispatch => {
-        api.signUpUser(userInfo).then(resp => {
-            dispatch(signUpSucceeded());
+        api.signUpUser(userInfo)
+            .then(resp => dispatch(signUpSucceeded(resp.data)))
+            .catch(e => dispatch(signUpFailed(e)))
+    }
+}
+
+const signUpSucceeded = (userInfo) => {
+    return {
+        type: 'SIGN_UP_USER_SUCCEEDED',
+        payload: { userInfo }
+    }
+}
+
+const signUpFailed = (error) => {
+    return {
+        type: 'SIGN_UP_USER_FAILED',
+        payload: { error }
+    }
+}
+
+
+export function loginUser(userInfo) {
+    return dispatch => {
+        api.loginUser(userInfo)
+            .then(resp => dispatch(loginUserSucceeded(resp.data[0])))
+            .catch(e => dispatch(loginUserFailed(e)))
+    }
+}
+
+const loginUserSucceeded = (userInfo) => {
+    return {
+        type: 'LOGIN_USER_SUCCEEDED',
+        payload: { userInfo }
+    }
+}
+
+const loginUserFailed = (error) => {
+    return {
+        type: 'LOGIN_USER_FAILED',
+        payload: { error }
+    }
+}
+
+export function fetchUser(userId) {
+    return dispatch => {
+        api.fetchUser(userId).then(resp => {
+            dispatch(fetchUserSucceeded(resp.data))
         })
     }
 }
 
-const signUpSucceeded = () => {
+const fetchUserSucceeded = (currentUser) => {
     return {
-        type: 'SIGN_UP_USER_SUCCEEDED',
-    }
-}
-
-const signUpFailed = () => {
-    return {
-        type: 'SIGN_UP_USER_FAILED',
+        type: 'FETCH_USER_SUCCEEDED',
+        payload: { currentUser }
     }
 }

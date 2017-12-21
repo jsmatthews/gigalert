@@ -28,3 +28,11 @@ export function fetchArtistEvents(artistId){
 export function signUpUser({email, password}){
     return client.post(`/users`, {email: email, password: password})
 }
+
+export function loginUser({email, password}){
+    return client.get(`/users?email=${email}&password=${password}`)
+}
+
+export function fetchUser(userId) {
+    return client.get(`/users/${userId}`);
+}

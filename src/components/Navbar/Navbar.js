@@ -3,11 +3,11 @@ import '../../styles/Navbar.css'
 
 import { NavLink } from 'react-router-dom'
 import { Modal, ModalHeader } from '../Modal'
-import { LoginForm } from '../LoginForm'
+import LoginForm from '../LoginForm'
 import SignUpForm from '../SignUpForm'
 
 const LoginLink = ({ label, openModal, type }) => (
-    <div className="nav-btn" onClick={() => openModal(type)}>
+    <div className="login-link" onClick={() => openModal(type)}>
         {label}
     </div>
 )
@@ -53,15 +53,22 @@ export default class Navbar extends Component {
 
     render() {
         return (
-            <div className="navbar">
+            <div className="navbar noselect">
                 <div className='logo'>
                     <NavLink to="/">GigAlert</NavLink>
                 </div>
-                <NavLink to="/artists">ARTISTS</NavLink>
-                <NavLink to="/events">EVENTS</NavLink>
 
-                <LoginLink label="Log In" openModal={this.openModal} type="displayLoginModal" />
-                <LoginLink label="Sign Up" openModal={this.openModal} type="displaySignupModal" />
+                <div className='nav-links'>
+                    <input type="text" className="search-input" placeholder="Search..." />
+                    <NavLink className="nav-btn" to="/artists">Artists</NavLink>
+                    <NavLink className="nav-btn" to="/events">Events</NavLink>
+                    <NavLink className="nav-btn" to="/dashboard/1">Dashboard</NavLink>
+                </div>
+
+                <div className='login-links'>
+                    <LoginLink label="Log In" openModal={this.openModal} type="displayLoginModal" />
+                    <LoginLink label="Sign Up" openModal={this.openModal} type="displaySignupModal" />
+                </div>
 
                 {this.renderLoginModal()}
                 {this.renderSignupModal()}

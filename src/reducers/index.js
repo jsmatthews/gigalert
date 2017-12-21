@@ -8,6 +8,10 @@ const defaultEvents = {
     events: []
 }
 
+const defaultUsers = {
+    currentUser: {}
+}
+
 export function artistsReducer(state = defaultArtists, action) {
     switch (action.type) {
         case 'FETCH_ALL_ARTISTS_SUCCEEDED': {
@@ -18,9 +22,6 @@ export function artistsReducer(state = defaultArtists, action) {
         }
         case 'FETCH_ARTIST_EVENTS_SUCCEEDED':{
             return {...state, artistEvents: action.payload.events};
-        }
-        case 'SIGN_UP_USER':{
-            return {...state, userInfo: action.payload};
         }
         default: {
             return state;
@@ -34,6 +35,29 @@ export function eventsReducer(state = defaultEvents, action){
             return {...state, events: action.payload.events}
         }
         default:{
+            return state;
+        }
+    }
+}
+
+export function usersReducer(state = defaultUsers, action) {
+    switch (action.type) {
+        case 'SIGN_UP_USER_SUCCEEDED':{
+            return {...state, ...action.payload};
+        }
+        case 'SIGN_UP_USER_FAILED':{
+            return {...state, ...action.payload};
+        }
+        case 'LOGIN_USER_SUCCEEDED':{
+            return {...state, ...action.payload};
+        }
+        case 'LOGIN_USER_FAILED':{
+            return {...state, ...action.payload};
+        }
+        case 'FETCH_USER_SUCCEEDED':{
+            return {...state, ...action.payload};
+        }
+        default: {
             return state;
         }
     }

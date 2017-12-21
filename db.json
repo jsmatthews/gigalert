@@ -43,6 +43,11 @@
       "email": "james@gmail.com",
       "password": "james",
       "id": 2
+    },
+    {
+      "email": "new",
+      "password": "new",
+      "id": 3
     }
   ]
 }
