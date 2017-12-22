@@ -7,7 +7,7 @@
 }
 
 .search-input {
-    height: 50px;
+    height: 49px;
     border: none;
     border-left: 1px solid #0bb90b;
     border-right: 1px solid #0bb90b;
@@ -131,7 +131,7 @@
 .login-link {
     border-left: 1px solid #0bb90b;
     width: 100px;
-    height: 50px;
+    height: 49px;
     line-height: 50px;
     text-align: center;
 }
@@ -142,5 +142,5 @@
 
 .login-link:hover {
     cursor: pointer;
-    color: #0bb90b;
+    background: #f5fff5;
 }
