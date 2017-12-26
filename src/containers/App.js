@@ -6,12 +6,11 @@ import HomePage from '../components/HomePage/HomePage'
 import ArtistsPage from '../components/Artists/ArtistsPage'
 import ArtistProfileContainer from '../components/ArtistProfile/ArtistProfileContainer'
 import EventsPage from '../components/EventsPage'
-import Dashboard from '../components/Dashboard'
+import DashboardContainer from '../modules/Dashboard/DashboardContainer'
 
 import '../styles/App.css';
 
 class App extends Component {
-
     render() {
         return (
             <div className="App">
@@ -20,7 +19,7 @@ class App extends Component {
                 <Route path="/artists" exact component={ArtistsPage} />
                 <Route path="/artists/:artistId" component={ArtistProfileContainer} />
                 <Route path="/events" component={EventsPage} />
-                <Route path="/dashboard/:userId" component={Dashboard} />
+                <Route path="/dashboard/:userId" component={DashboardContainer} />
             </div>
         );
     }

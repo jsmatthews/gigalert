@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchUser } from '../actions/index'
+import { fetchUser } from '../../actions/index'
 
-class Dashboard extends Component {
+import { Dashboard } from './Dashboard'
+
+class DashboardContainer extends Component {
     constructor(props) {
         super(props);
         this.state = { currentUser: {} }
@@ -20,13 +22,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        return (
-            <div className='dashboard'>
-                {
-                    (this.state.currentUser) ? this.state.currentUser.name : null
-                }
-            </div>
-        )
+        return <Dashboard {...this.state} />        
     }
 }
 
@@ -36,4 +32,4 @@ const mapStateToProps = (state, ownProps) => {
     return { userId, currentUser };
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(DashboardContainer)
