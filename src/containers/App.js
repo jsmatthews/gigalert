@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import HomePage from '../components/HomePage/HomePage'
 import ArtistsPage from '../components/Artists/ArtistsPage'
-import ArtistProfile from '../components/Artists/ArtistProfile'
+import ArtistProfileContainer from '../components/ArtistProfile/ArtistProfileContainer'
 import EventsPage from '../components/EventsPage'
 import Dashboard from '../components/Dashboard'
 
@@ -18,7 +18,7 @@ class App extends Component {
                 <Navbar />
                 <Route path="/" exact component={HomePage} />
                 <Route path="/artists" exact component={ArtistsPage} />
-                <Route path="/artists/:artistId" component={ArtistProfile} />
+                <Route path="/artists/:artistId" component={ArtistProfileContainer} />
                 <Route path="/events" component={EventsPage} />
                 <Route path="/dashboard/:userId" component={Dashboard} />
             </div>

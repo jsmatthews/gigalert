@@ -33,7 +33,10 @@ const fetchAllEventsSucceeded = (events) => {
 export function fetchArtist(artistId) {
     return dispatch => {
         api.fetchArtist(artistId).then(resp => {
-            dispatch(fetchArtistSucceeded(resp.data))
+            setTimeout(() => {
+                dispatch(fetchArtistSucceeded(resp.data))
+            }, 3000)
+            
         })
     }
 }
