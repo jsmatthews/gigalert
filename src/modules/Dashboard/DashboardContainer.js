@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { fetchUser } from '../../actions/index'
@@ -22,14 +23,15 @@ class DashboardContainer extends Component {
     }
 
     render() {
+        if(!this.props.isLoggedIn) return <Redirect to="/" />
         return <Dashboard {...this.state} />        
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { currentUser } = state.users;
+    const { currentUser, isLoggedIn } = state.users;
     const { userId } = ownProps.match.params;
-    return { userId, currentUser };
+    return { userId, currentUser, isLoggedIn };
 }
 
 export default connect(mapStateToProps)(DashboardContainer)

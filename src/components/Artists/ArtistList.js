@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ArtistLink from '../Artists/ArtistLink'
+import ArtistLink from './ArtistLink'
 import { Link } from 'react-router-dom'
 
 import '../../styles/HomePage.css'

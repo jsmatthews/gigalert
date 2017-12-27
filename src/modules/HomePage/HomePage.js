@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchArtists } from '../../actions/index'
+import { fetchAllArtists } from '../../actions/index'
 
-import ArtistList from './ArtistList'
+import ArtistList from '../../components/Artists/ArtistList'
 
 import '../../styles/HomePage.css'
 
 class HomePage extends Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchArtists())
+        this.props.dispatch(fetchAllArtists())
     }
 
     render() {

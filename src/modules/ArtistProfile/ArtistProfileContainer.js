@@ -2,15 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchArtist, fetchArtistEvents } from '../../actions/index'
 
-const ArtistInfo = ({ name, description }) => (
-    <div className='artist-info'>
-        {name} - {description}
-    </div>
-)
+import ArtistProfile from './ArtistProfile'
 
-const ArtistEvents = props => props.events.map(event => <div key={event.id}>{event.name}</div>)
-
-class ArtistProfile extends Component {
+class ArtistProfileContainer extends Component {
     constructor(props) {
         super(props);
         this.state = { selectedArtist: {}, artistEvents: [] }
@@ -28,14 +22,7 @@ class ArtistProfile extends Component {
     }
 
     render() {
-        return (
-            <div className='artist-profile'>
-                {
-                    (this.state.selectedArtist) ? <ArtistInfo {...this.state.selectedArtist} /> : ""
-                }
-                <ArtistEvents events={this.state.artistEvents} />
-            </div>
-        )
+        return <ArtistProfile {...this.state} />
     }
 }
 
@@ -44,4 +31,4 @@ const mapStateToProps = (state) => {
     return { artistProfile, artistEvents }
 }
 
-export default connect(mapStateToProps)(ArtistProfile)
+export default connect(mapStateToProps)(ArtistProfileContainer)
