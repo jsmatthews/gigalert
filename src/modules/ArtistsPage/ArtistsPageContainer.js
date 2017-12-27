@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchArtists } from '../../actions/index'
-import ArtistLink from './ArtistLink'
+import { fetchAllArtists } from '../../actions/index'
+import ArtistLink from '../../components/Artists/ArtistLink'
 import '../../styles/Artists.css'
 
-class ArtistsPage extends Component {
+class ArtistsPageContainer extends Component {
     componentDidMount() {
-        this.props.dispatch(fetchArtists());
+        this.props.dispatch(fetchAllArtists());
     }
 
     listArtists() {
@@ -27,4 +27,4 @@ function mapStateToProps(state) {
     return { artists };
 }
 
-export default connect(mapStateToProps)(ArtistsPage)
+export default connect(mapStateToProps)(ArtistsPageContainer)

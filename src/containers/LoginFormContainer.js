@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { loginUser } from '../actions/index'
+import LoginForm from '../components/Forms/LoginForm'
 
-import { Form, SubmitButton, FormTextInput, FormPasswordInput } from './FormComponents'
-
-class LoginForm extends Component {
+class LoginFormContainer extends Component {
     constructor(props) {
         super(props);
         this.state = { email: "", password: "" }
@@ -30,13 +29,7 @@ class LoginForm extends Component {
     }
 
     render() {
-        return (
-            <Form>
-                <FormTextInput id="loginEmail" autocomplete="email" name="email" ph="Email" value={this.state.email} onChange={this.handleInputChange} />
-                <FormPasswordInput id="loginPassword" autocomplete="current-password" name="password" ph="Password" value={this.state.password} onChange={this.handleInputChange} />
-                <SubmitButton id="loginSubmit" onClick={this.handleSubmit} />
-            </Form>
-        )
+        return <LoginForm {...this.state} handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} />
     }
 }
 
@@ -44,4 +37,4 @@ const mapDispatchToProps = dispatch => {
     return dispatch;
 }
 
-export default connect(mapDispatchToProps)(LoginForm)
+export default connect(mapDispatchToProps)(LoginFormContainer)
