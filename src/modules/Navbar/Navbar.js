@@ -35,26 +35,14 @@ const LoginLinks = ({ openModal }) => (
     </div>
 )
 
-const LogOutLink = ({ logOut }) => (
-    <div onClick={(e) => logOut(e)}>
-        Log Out
-    </div>
-)
-
-const UserIcon = ({ email }) => (
-    <NavLink className="nav-btn" to="/dashboard/1">{email}</NavLink>
-)
+const LogOutLink = ({ logOut }) => <div onClick={(e) => logOut(e)}>Log Out</div>
+const UserIcon = ({ id, email }) => <NavLink className="nav-btn" to={`/dashboard/${id}`}>{email}</NavLink>
+const AppLogo = () => <div className='logo'><NavLink to="/">GigAlert</NavLink></div>
 
 const UserMenu = ({ currentUser, logOut }) => (
     <div>
         <UserIcon {...currentUser} />
         <LogOutLink logOut={logOut} />
-    </div>
-)
-
-const AppLogo = () => (
-    <div className='logo'>
-        <NavLink to="/">GigAlert</NavLink>
     </div>
 )
 

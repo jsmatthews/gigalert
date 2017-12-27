@@ -40,16 +40,19 @@
       "name": "James"
     },
     {
+      "name": "James",
       "email": "james@gmail.com",
       "password": "james",
       "id": 2
     },
     {
+      "name": "New",
       "email": "new",
       "password": "new",
       "id": 3
     },
     {
+      "name": "Hello",
       "email": "hello@gmail.com",
       "password": "hello",
       "id": 4

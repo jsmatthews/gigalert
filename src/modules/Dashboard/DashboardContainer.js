@@ -7,24 +7,13 @@ import { fetchUser } from '../../actions/index'
 import { Dashboard } from './Dashboard'
 
 class DashboardContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { currentUser: {} }
-    }
-
     componentWillMount() {
         this.props.dispatch(fetchUser(this.props.userId))
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.currentUser !== null) {
-            this.setState({ currentUser: newProps.currentUser })
-        }
-    }
-
     render() {
         if(!this.props.isLoggedIn) return <Redirect to="/" />
-        return <Dashboard {...this.state} />        
+        return <Dashboard {...this.props} />        
     }
 }
 

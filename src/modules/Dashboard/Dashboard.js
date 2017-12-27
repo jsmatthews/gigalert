@@ -1,31 +1,19 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 
 import '../../styles/Dashboard.css'
+import AccountSettings from './AccountSettings';
 
-const Avatar = ({ avatarSource }) => (
-    <div className="avatar">
-        <img src={avatarSource} alt="avatar" />
-    </div>
-)
-
-const UserName = ({ userName }) => (
-    <div className="username">
-        {userName}
-    </div>
-)
+const Avatar = ({ avatarSource }) => <div className="avatar"><img src={avatarSource} alt="avatar" /></div>
+const UserName = ({ userName }) => <div className="username">{userName}</div>
 
 const DashboardMenu = (props) => (
     <div className="dashboard-menu">
-        {
-            props.children.map(child => (
-                <div key={child.props.order} className="dashboard-menu-row">
-                    {child}
-                </div>
-            ))
-        }
+        {props.children.map(child => <DashboardMenuRow key={child.props.order} child={child} />)}
     </div>
 )
+
+const DashboardMenuRow = (props) => <div className="dashboard-menu-row">{props.child}</div>
 
 const DashboardMenuItem = ({ label, to, order }) => (
     <div className="dashboard-menu-item" order={order}>
@@ -40,8 +28,14 @@ const DashboardSidebar = (props) => (
         <DashboardMenu>
             <DashboardMenuItem order="1" label="Events" to="/events" />
             <DashboardMenuItem order="2" label="Artists" to="/artists" />
-            <DashboardMenuItem order="3" label="Account" to="/dashboard" />
+            <DashboardMenuItem order="3" label="Account" to={`/dashboard/${props.currentUser.id}/accountSettings`} />
         </DashboardMenu>
+    </div>
+)
+
+const DashboardMain = (props) => (
+    <div className='dashboard-main'>
+        <Route path={`/dashboard/${props.currentUser.id}/accountSettings`} component={AccountSettings} />
     </div>
 )
 
@@ -50,6 +44,7 @@ export class Dashboard extends Component {
         return (
             <div className='page dashboard'>
                 <DashboardSidebar {...this.props} />
+                <DashboardMain {...this.props} />
             </div>
         )
     }
