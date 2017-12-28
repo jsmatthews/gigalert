@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-import { displayModal, hideModal } from '../../actions/index'
+import { displayModal, hideModal, toggleUserMenu } from '../../actions/index'
 import Navbar from './Navbar'
 
 class NavbarContainer extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+        this.openModal = this.openModal.bind(this)
+        this.closeModal = this.closeModal.bind(this)
     }
 
     openModal(type) {
@@ -21,15 +21,13 @@ class NavbarContainer extends Component {
     }
 
     render() {
-        return <Navbar {...this.props} openModal={this.openModal} closeModal={this.closeModal} />
+        return <Navbar {...this.props} openModal={this.openModal} closeModal={this.closeModal} toggleUserMenu={this.toggleUserMenu} />
     }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        displayLoginModal: state.app.displayLoginModal,
-        displaySignupModal: state.app.displaySignupModal
-    }
+    const {displayLoginModal, displaySignupModal, userMenuDropdownModal} = state.app;
+    return {displayLoginModal, displaySignupModal, userMenuDropdownModal}
 }
 
 export default connect(mapStateToProps)(NavbarContainer)

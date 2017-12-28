@@ -13,13 +13,13 @@ export class Modal extends Component {
     constructor(props){
         super(props);
         this.modalContainer = document.createElement('div');
-        this.modalContainer.className = "modal-container";
+        this.modalContainer.className = props.modalContainerStyle || "modal-container";
 
         this.backgroundEl = document.createElement('div');
-        this.backgroundEl.className = "modal-background";
+        this.backgroundEl.className = props.modalBackgroundStyle || "modal-background";
 
         this.modalEl = document.createElement('div');
-        this.modalEl.className = "modal";
+        this.modalEl.className = props.modalStyle || "modal";
     }
 
     componentDidMount(){

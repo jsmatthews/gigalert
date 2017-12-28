@@ -60,6 +60,33 @@
     padding: 10px 15px;
 }
 
+.modal-dropdown{
+    width: 200px;
+    height: 200px;
+    background-color: #ddd;
+    border-radius: 3px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-dropdown-background{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.modal-dropdown-container{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .modal-header {
     height: 40px;
     font-size: 24px;
@@ -73,8 +100,7 @@
     border: 1px groove;
 }
 
-.form-text-input:focus,
-.form-text-input:hover {
+.form-text-input:focus, .form-text-input:hover {
     border: 1px solid #0bb90b;
 }
 
@@ -145,4 +171,26 @@
 .login-link:hover {
     cursor: pointer;
     background: #f5fff5;
+}
+
+.user-dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 200px;
+    background: #ddd;
+    top: 50px;
+}
+
+.user-menu-dropdown-row {
+    height: 30px;
+    padding: 5px;
+}
+
+.user-menu-dropdown-row:hover {
+    cursor: pointer;
+}
+
+.user-icon:hover{
+    cursor: pointer;
 }

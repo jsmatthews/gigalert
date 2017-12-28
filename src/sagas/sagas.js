@@ -5,8 +5,8 @@ import { login_modal_type, signup_modal_type } from '../constants'
 
 function* fetchUser(action) {
     try {
-        const user = yield call(api.fetchUser, action.payload.userId);
-        yield put({ type: "FETCH_USER_SUCCEEDED", payload: user });
+        const { data: user } = yield call(api.fetchUser, action.payload.userId);
+        yield put({ type: "FETCH_USER_SUCCEEDED", payload: { user } });
     } catch (e) {
         yield put({ type: "FETCH_USER_FAILED", message: e.message });
     }
@@ -14,8 +14,8 @@ function* fetchUser(action) {
 
 function* verifyUser(action) {
     try {
-        const user = yield call(api.verifyUser, action.payload.userId);
-        yield put({ type: "VERIFY_USER_SUCCEEDED", payload: { currentUser: user.data[0] } });
+        const { data: user } = yield call(api.verifyUser, action.payload.userId);
+        yield put({ type: "VERIFY_USER_SUCCEEDED", payload: { currentUser: user[0] } });
     } catch (e) {
         yield put({ type: "VERIFY_USER_FAILED", message: e.message });
     }
@@ -23,8 +23,8 @@ function* verifyUser(action) {
 
 function* signUp(action) {
     try {
-        const signedUpUser = yield call(api.signUpUser, action.payload.userInfo)
-        yield put({ type: 'USER_SIGNUP_SUCCEEDED', payload: signedUpUser })
+        const { data: signedUpUser } = yield call(api.signUpUser, action.payload.userInfo)
+        yield put({ type: 'USER_SIGNUP_SUCCEEDED', payload: { currentUser: signedUpUser[0] } })
         yield put({ type: 'HIDE_MODAL', payload: { type: signup_modal_type } })
     } catch (e) {
         yield put({ type: 'USER_SIGNUP_FAILED', payload: e.message })
@@ -33,8 +33,8 @@ function* signUp(action) {
 
 function* logIn(action) {
     try {
-        const loggedInUser = yield call(api.loginUser, action.payload.userInfo)
-        yield put({ type: "USER_LOGIN_SUCCEEDED", payload: loggedInUser })
+        const { data: loggedInUser } = yield call(api.loginUser, action.payload.userInfo)
+        yield put({ type: "USER_LOGIN_SUCCEEDED", payload: { currentUser: loggedInUser[0] } })
         yield put({ type: 'HIDE_MODAL', payload: { type: login_modal_type } })
     } catch (e) {
         yield put({ type: "USER_LOGIN_FAILED", payload: e.message })
@@ -52,8 +52,8 @@ function* logOut(action) {
 
 function* fetchAllArtists(action) {
     try {
-        const allArtists = yield call(api.fetchAllArtists)
-        yield put({ type: "FETCH_ALL_ARTISTS_SUCCEEDED", payload: { artists: allArtists.data } })
+        const { data: artists } = yield call(api.fetchAllArtists)
+        yield put({ type: "FETCH_ALL_ARTISTS_SUCCEEDED", payload: { artists } })
     } catch (e) {
         yield put({ type: "FETCH_ALL_ARTISTS_FAILED", payload: e.message })
     }
@@ -61,8 +61,8 @@ function* fetchAllArtists(action) {
 
 function* fetchAllEvents(action) {
     try {
-        const allEvents = yield call(api.fetchAllEvents)
-        yield put({ type: "FETCH_ALL_EVENTS_SUCCEEDED", payload: { events: allEvents.data } })
+        const { data: events } = yield call(api.fetchAllEvents)
+        yield put({ type: "FETCH_ALL_EVENTS_SUCCEEDED", payload: { events } })
     } catch (e) {
         yield put({ type: "FETCH_ALL_EVENTS_FAILED", payload: e.message })
     }
@@ -70,8 +70,8 @@ function* fetchAllEvents(action) {
 
 function* fetchArtist(action) {
     try {
-        const artist = yield call(api.fetchAllEvents, action.payload.artistId)
-        yield put({ type: "FETCH_ARTIST_SUCCEEDED", payload: artist })
+        const { data: artist } = yield call(api.fetchArtist, action.payload.artistId)
+        yield put({ type: "FETCH_ARTIST_SUCCEEDED", payload: { artist } })
     } catch (e) {
         yield put({ type: "FETCH_ARTIST_FAILED", payload: e.message })
     }
@@ -79,60 +79,37 @@ function* fetchArtist(action) {
 
 function* fetchArtistEvents(action) {
     try {
-        const artistEvents = yield call(api.fetchArtistEvents, action.payload.artistId)
-        yield put({ type: "FETCH_ARTIST_EVENTS_SUCCEEDED", payload: { events: artistEvents.data } })
+        const { data: events } = yield call(api.fetchArtistEvents, action.payload.artistId)
+        yield put({ type: "FETCH_ARTIST_EVENTS_SUCCEEDED", payload: { events } })
     } catch (e) {
         yield put({ type: "FETCH_ARTIST_EVENTS_FAILED", payload: e.message })
     }
 }
 
 
-function* watchFetchUser() {
+
+function* watchUserRequests() {
     yield takeEvery("FETCH_USER_REQUESTED", fetchUser)
-}
-
-function* watchVerifyUser() {
     yield takeEvery("VERIFY_USER_REQUESTED", verifyUser)
-}
-
-function* watchUserLogout() {
     yield takeEvery("USER_LOGOUT_REQUESTED", logOut)
-}
-
-function* watchUserLogin() {
     yield takeEvery("USER_LOGIN_REQUESTED", logIn)
-}
-
-function* watchUserSignUp() {
     yield takeEvery("USER_SIGNUP_REQUESTED", signUp)
 }
 
-function* watchFetchArtistEvents() {
+function* watchArtistRequests() {
     yield takeEvery("FETCH_ARTIST_EVENTS_REQUESTED", fetchArtistEvents)
-}
-
-function* watchFetchAllArtists() {
     yield takeEvery("FETCH_ALL_ARTISTS_REQUESTED", fetchAllArtists)
-}
-
-function* watchFetchAllEvents() {
-    yield takeEvery("FETCH_ALL_EVENTS_REQUESTED", fetchAllEvents)
-}
-
-function* watchFetchArtist() {
     yield takeEvery("FETCH_ARTIST_REQUESTED", fetchArtist)
+}
+
+function* watchEventRequests() {
+    yield takeEvery("FETCH_ALL_EVENTS_REQUESTED", fetchAllEvents)
 }
 
 export default function* rootSaga() {
     yield all([
-        watchFetchUser(),
-        watchVerifyUser(),
-        watchUserLogout(),
-        watchUserLogin(),
-        watchUserSignUp(),
-        watchFetchArtistEvents(),
-        watchFetchAllArtists(),
-        watchFetchAllEvents(),
-        watchFetchArtist()
+        watchUserRequests(),
+        watchArtistRequests(),
+        watchEventRequests()
     ])
 }

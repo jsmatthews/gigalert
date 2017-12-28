@@ -10,43 +10,16 @@ const client = axios.create({
 })
 
 // Artists
-export function fetchAllArtists() {
-    return client.get('/artists');
-}
-
-export function fetchAllEvents() {
-    return client.get('/events');
-}
-
-export function fetchArtist(artistId) {
-    return client.get(`/artists/${artistId}`);
-}
+export const fetchAllArtists = () => (client.get('/artists'))
+export const fetchAllEvents = () => (client.get('/events'))
+export const fetchArtist = (artistId) => (client.get(`/artists/${artistId}`))
 
 // Events
-export function fetchArtistEvents(artistId) {
-    return client.get(`/events?artistId=${artistId}`);
-}
-
+export const fetchArtistEvents = (artistId) => (client.get(`/events?artistId=${artistId}`))
 
 // Users
-export function signUpUser({ email, password }) {
-    return client.post(`/users`, { email: email, password: password })
-}
-
-export function loginUser({ email, password }) {
-    return client.get(`/users?email=${email}&password=${password}`)
-}
-
-export function fetchUser(userId) {
-    return client.get(`/users/${userId}`);
-}
-
-
-export function verifyUser(userId) {
-    //get user token from cookies
-    return client.get(`/users?id=${userId}`);
-}
-
-export function logOutUser(userId){
-    return client.get(`/users?id=${userId}`);
-}
+export const signUpUser = ({email, password}) => (client.post(`/users`, { email: email, password: password }))
+export const loginUser = ({ email, password }) => (client.get(`/users?email=${email}&password=${password}`))
+export const fetchUser = (userId) => (client.get(`/users/${userId}`))
+export const verifyUser = (userId) => (client.get(`/users?id=${userId}`))
+export const logOutUser = (userId) => (client.get(`/users?id=${userId}`))
