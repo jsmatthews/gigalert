@@ -15,6 +15,7 @@ function* fetchUser(action) {
 function* verifyUser(action) {
     try {
         const { data: user } = yield call(api.verifyUser, action.payload.userId);
+        if(user[0] === undefined) throw new Error("User not found");
         yield put({ type: "VERIFY_USER_SUCCEEDED", payload: { currentUser: user[0] } });
     } catch (e) {
         yield put({ type: "VERIFY_USER_FAILED", message: e.message });
@@ -86,7 +87,9 @@ function* fetchArtistEvents(action) {
     }
 }
 
-
+function* watchAppRequests() {
+    
+}
 
 function* watchUserRequests() {
     yield takeEvery("FETCH_USER_REQUESTED", fetchUser)
@@ -108,6 +111,7 @@ function* watchEventRequests() {
 
 export default function* rootSaga() {
     yield all([
+        watchAppRequests(),
         watchUserRequests(),
         watchArtistRequests(),
         watchEventRequests()

@@ -1,7 +1,7 @@
 const defaultApp = {
     displayLoginModal: false,
     displaySignupModal: false,
-    userMenuDropdownModal: false
+    userMenuDisplayed: false
 }
 
 const defaultArtists = {
@@ -18,7 +18,11 @@ const defaultEvents = {
 
 const defaultUsers = {
     isReady: false,
-    currentUser: {},
+    currentUser: {
+        id: null,
+        name: null,
+        email: null,
+    },
     isLoggedIn: false,
     userError: null
 }
@@ -27,6 +31,8 @@ export function appReducer(state = defaultApp, action) {
     switch (action.type) {
         case 'DISPLAY_MODAL': return { ...state, [action.payload.type]: true }
         case 'HIDE_MODAL': return { ...state, [action.payload.type]: false }
+        case 'DISPLAY_USER_MENU': return { ...state, userMenuDisplayed: true }
+        case 'HIDE_USER_MENU': return { ...state, userMenuDisplayed: false }
 
         default: return state;
     }

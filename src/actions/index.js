@@ -17,4 +17,5 @@ export const fetchUser = (userId) => ({type: 'USER_FETCH_REQUESTED', payload: { 
 // App Actions
 export const displayModal = (type) => ({type: 'DISPLAY_MODAL', payload: { type }})
 export const hideModal = (type) => ({type: 'HIDE_MODAL', payload: { type }})
-export const toggleUserMenu = () => ({type:'TOGGLE_USER_MENU'})
+export const displayUserMenu = () => ({type:'DISPLAY_USER_MENU'})
+export const hideUserMenu = () => ({type:'HIDE_USER_MENU'})

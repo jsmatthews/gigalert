@@ -38,11 +38,13 @@ class App extends Component {
         return (
             <div className="App">
                 <NavbarContainer isLoggedIn={this.props.isLoggedIn} currentUser={this.props.currentUser} logOut={this.logOut} />
-                <Route path="/" exact component={HomePage} />
-                <Route path="/artists" exact component={ArtistsPageContainer} />
-                <Route path="/artists/:artistId" component={ArtistProfileContainer} />
-                <Route path="/events" component={EventsPageContainer} />
-                <Route path="/dashboard/:userId" component={DashboardContainer} />
+                <div id="appBody">
+                    <Route path="/" exact component={HomePage} />
+                    <Route path="/artists" exact component={ArtistsPageContainer} />
+                    <Route path="/artists/:artistId" component={ArtistProfileContainer} />
+                    <Route path="/events" component={EventsPageContainer} />
+                    <Route path="/dashboard" component={DashboardContainer} />
+                </div>
             </div>
         );
     }
