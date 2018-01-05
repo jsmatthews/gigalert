@@ -12,10 +12,6 @@ class SignUpFormContainer extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        // console.log(this.props)
-    }
-
     handleSubmit(e) {
         e.preventDefault();
         if (this.state.email === "" || this.state.password === "") {

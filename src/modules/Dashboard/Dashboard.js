@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, NavLink, Redirect } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 
 import '../../styles/Dashboard.css'
 import AccountSettings from './AccountSettings';
@@ -35,14 +35,13 @@ const DashboardSidebar = (props) => (
 
 const DashboardMain = (props) => (
     <div className='dashboard-main'>
-        <Route path={`/dashboard/${props.currentUser.id}/accountSettings`} component={AccountSettings} />
+        <Route path="/dashboard/accountSettings" component={AccountSettings} />
     </div>
 )
 
 export class Dashboard extends Component {
     render() {
-        const { id } = this.props.currentUser;
-        console.log(id)
+        // const { id } = this.props.currentUser;
         // if (id === undefined || id === null ) return <Redirect to="/" />
         return (
             <div className='page dashboard'>

@@ -31,7 +31,7 @@ const UserModals = ({ displayLoginModal, displaySignupModal, closeModal }) => (
 export default class Navbar extends Component {
     render() {
         return (
-            <div className="navbar noselect">
+            <div id="navbar" className="navbar noselect">
                 <AppLogo />
                 <SearchBar />
                 <UserInfo {...this.props} />

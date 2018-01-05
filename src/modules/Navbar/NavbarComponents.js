@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Modal, ModalHeader } from '../../components/Modal'
 import LoginFormContainer from '../../containers/LoginFormContainer'
 import SignUpFormContainer from '../../containers/SignUpFormContainer'
+import DropdownMenu from '../../components/DropdownMenu'
 
 import { login_modal_type, signup_modal_type, user_menu_dropdown_modal_type } from '../../constants'
 
@@ -21,10 +22,10 @@ export const SignupModal = ({ closeModal }) => (
     </Modal>
 )
 
-export const UserMenu = ({ currentUser, logOut, toggleUserMenu, userMenuDisplayed }) => (
+export const UserMenu = ({ currentUser, logOut, toggleUserMenu, userMenuDisplayed, hideMenu }) => (
     <div>
         <UserIcon {...currentUser} userMenuDisplayed={userMenuDisplayed} toggleUserMenu={toggleUserMenu} type={user_menu_dropdown_modal_type} />
-        {(userMenuDisplayed) ? <UserMenuDropdown id={currentUser.id} logOut={logOut} /> : null}
+        {(userMenuDisplayed) ? <UserMenuDropdown id={currentUser.id} logOut={logOut} hideMenu={hideMenu} /> : null}
     </div>
 )
 
@@ -35,38 +36,33 @@ export const LoginLinks = ({ openModal }) => (
     </div>
 )
 
-
-const UserMenuDropdown = ({ id, logOut }) => (
-    <div id="userDropdownMenu" className="user-dropdown-menu">
-        <div className="user-menu-dropdown-item">
-            <Link to='/dashboard' >
-                <span className="user-menu-dropdown-item-icon fa fa-rocket"></span>
-                <span className="user-menu-dropdown-item-label">Dashboard</span>
-            </Link>
-        </div>
-        <div className="user-menu-dropdown-item" onClick={(e) => logOut(e)}>
-            <span className="user-menu-dropdown-item-icon fa fa-sign-out"></span>
-            <span className="user-menu-dropdown-item-label">Log Out</span>
-        </div>
+const UserMenuDropdownItem = ({ id, icon, label }) => (
+    <div className="user-menu-dropdown-item">
+        <span id={id} className={`user-menu-dropdown-item-icon fa fa-${icon}`}></span>
+        <span className="user-menu-dropdown-item-label">{label}</span>
     </div>
 )
 
+const UserMenuDropdown = ({ id, logOut, hideMenu }) => (
+    <DropdownMenu dropdownMenuRoot="userIcon" hideMenu={hideMenu}>
 
+        <Link to='/dashboard' >
+            <UserMenuDropdownItem id="dashboardLink" icon="rocket" label="Dashboard" />
+        </Link>
 
-const Triangles = () => (
-    <div className="triangles">
-        <div className="triangle"></div>
-        <div className="triangle2"></div>
-    </div>
+        <div onClick={(e) => logOut(e)}>
+            <UserMenuDropdownItem icon="sign-out" label="Log Out" />
+        </div>
+
+    </DropdownMenu>
 )
+
 
 const UserIcon = ({ userMenuDisplayed, toggleUserMenu, email, type }) => (
-    <div className="user-icon" onClick={() => toggleUserMenu()}>
-        {email}
-        {(userMenuDisplayed) ? <Triangles /> : null}
+    <div id="userIcon" className="user-icon">
+        <span onClick={() => toggleUserMenu()}>{email}</span>
     </div>
 )
-
 
 const LoginLink = ({ label, openModal, type }) => (
     <div className="login-link" onClick={() => openModal(type)}>

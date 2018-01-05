@@ -1,61 +1,72 @@
 {
-  "artists": [
-    {
-      "id": 1,
-      "name": "ZEDD",
-      "description": "A great artist and DJ!"
-    },
-    {
-      "id": 2,
-      "name": "Marshmello",
-      "description": "A great artist and DJ!"
-    }
-  ],
-  "events": [
-    {
-      "id": 1,
-      "name": "Zedd on tour!",
-      "location": "Tokyo",
-      "artistId": 1,
-      "date": "2018-01-01"
-    },
-    {
-      "id": 2,
-      "name": "event 2",
-      "location": "Seoul",
-      "artistId": 1,
-      "date": "2018-01-02"
-    },
-    {
-      "id": 3,
-      "name": "Marshmello tour",
-      "location": "Seoul",
-      "artistId": 2,
-      "date": "2018-01-02"
-    }
-  ],
-  "users": [
-    {
-      "id": 1,
-      "name": "James"
-    },
-    {
-      "name": "James",
-      "email": "james@gmail.com",
-      "password": "james",
-      "id": 2
-    },
-    {
-      "name": "New",
-      "email": "new",
-      "password": "new",
-      "id": 3
-    },
-    {
-      "name": "Hello",
-      "email": "hello@gmail.com",
-      "password": "hello",
-      "id": 4
-    }
-  ]
+    "artists": [
+        {
+            "id": 1,
+            "name": "Artist 1",
+            "description": "A great artist!"
+        },
+        {
+            "id": 2,
+            "name": "Artist 2",
+            "description": "A great artist!"
+        },
+        {
+            "id": 3,
+            "name": "Artist 3",
+            "description": "A great artist!"
+        },
+        {
+            "id": 4,
+            "name": "Artist 4",
+            "description": "A great artist!"
+        },
+        {
+            "id": 5,
+            "name": "Artist 5",
+            "description": "A great artist!"
+        },
+        {
+            "id": 6,
+            "name": "Artist 6",
+            "description": "A great artist!"
+        }
+    ],
+    "events": [
+        {
+            "id": 1,
+            "title": "Artist 1 on tour!",
+            "location": "Tokyo",
+            "artistId": 1,
+            "date": "2018-01-01"
+        },
+        {
+            "id": 2,
+            "title": "event 2",
+            "location": "Seoul",
+            "artistId": 1,
+            "date": "2018-01-02"
+        },
+        {
+            "id": 3,
+            "title": "event 3",
+            "location": "Singapore",
+            "artistId": 1,
+            "date": "2018-01-03"
+        },
+        {
+            "id": 3,
+            "title": "Artist 2 on tour",
+            "location": "Seoul",
+            "artistId": 2,
+            "date": "2018-01-02"
+        }
+    ],
+    "users": [
+        {
+            "name": "James",
+            "email": "james@gmail.com",
+            "password": "james",
+            "id": 1
+        }
+    ]
 }

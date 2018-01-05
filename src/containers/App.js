@@ -9,7 +9,7 @@ import ArtistProfileContainer from '../modules/ArtistProfile/ArtistProfileContai
 import EventsPageContainer from '../modules/EventsPage/EventsPageContainer'
 import DashboardContainer from '../modules/Dashboard/DashboardContainer'
 
-import { verifyUser, logOutUser } from '../actions/index'
+import { verifyUser, logOutUser, hideUserMenu } from '../actions/index'
 
 import '../styles/App.css';
 
@@ -21,7 +21,7 @@ class App extends Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(verifyUser(2));
+        this.props.dispatch(verifyUser(1));
     }
 
     componentWillReceiveProps(newProps) {
@@ -31,12 +31,13 @@ class App extends Component {
     logOut(e) {
         e.preventDefault();
         this.props.dispatch(logOutUser(this.props.currentUser.id))
+        this.props.dispatch(hideUserMenu())
     }
 
     render() {
         if (!this.props.isReady) return null;
         return (
-            <div className="App">
+            <div id="app" className="App">
                 <NavbarContainer isLoggedIn={this.props.isLoggedIn} currentUser={this.props.currentUser} logOut={this.logOut} />
                 <div id="appBody">
                     <Route path="/" exact component={HomePage} />

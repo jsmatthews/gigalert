@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchAllArtists } from '../../actions/index'
-import ArtistLink from '../../components/Artists/ArtistLink'
+import ArtistList from '../../components/Artists/ArtistList'
 import '../../styles/Artists.css'
 
 class ArtistsPageContainer extends Component {
@@ -9,16 +9,8 @@ class ArtistsPageContainer extends Component {
         this.props.dispatch(fetchAllArtists());
     }
 
-    listArtists() {
-        return this.props.artists.map(artist => <ArtistLink key={artist.id} { ...artist } />)
-    }
-
     render() {
-        return (
-            <div className="page artists-page">
-                {this.listArtists()}
-            </div>
-        )
+        return <ArtistList artists={this.props.artists} />
     }
 }
 

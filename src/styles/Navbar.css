@@ -175,11 +175,12 @@
     background: #f5fff5;
 }
 
-.user-dropdown-menu {
+.dropdown {
     display: flex;
     justify-content: space-evenly;
+    align-items: flex-start;
     position: absolute;
-    top: 60px;
+    top: 44px;
     width: 300px;
     height: 300px;
     background-color: #fff;
@@ -231,19 +232,15 @@
     font-size: 14px;
 }
 
-.user-menu-dropdown-row:hover {
-    cursor: pointer;
-}
-
 .user-icon {
     position: relative;
 }
 
-.user-icon:hover {
+.user-icon > span:hover {
     cursor: pointer;
 }
 
-.triangle {
+.triangle-back {
     border-color: transparent;
     border-style: dashed dashed solid;
     border-width: 0 8.5px 8.5px;
@@ -257,7 +254,7 @@
     top: 36px;
 }
 
-.triangle2 {
+.triangle-front {
     border-color: transparent;
     border-bottom-color: #fff;
     border-style: dashed dashed solid;
