@@ -40,13 +40,6 @@
             "date": "2018-01-01"
         },
         {
-            "id": 2,
-            "title": "event 2",
-            "location": "Seoul",
-            "artistId": 1,
-            "date": "2018-01-02"
-        },
-        {
             "id": 3,
             "title": "event 3",
             "location": "Singapore",
@@ -54,7 +47,14 @@
             "date": "2018-01-03"
         },
         {
-            "id": 3,
+            "id": 2,
+            "title": "event 2",
+            "location": "Seoul",
+            "artistId": 1,
+            "date": "2018-01-02"
+        },
+        {
+            "id": 4,
             "title": "Artist 2 on tour",
             "location": "Seoul",
             "artistId": 2,

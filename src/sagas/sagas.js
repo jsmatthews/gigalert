@@ -15,7 +15,7 @@ function* fetchUser(action) {
 function* verifyUser(action) {
     try {
         const { data: user } = yield call(api.verifyUser, action.payload.userId);
-        if(user[0] === undefined) throw new Error("User not found");
+        if (user[0] === undefined) throw new Error("User not found");
         yield put({ type: "VERIFY_USER_SUCCEEDED", payload: { currentUser: user[0] } });
     } catch (e) {
         yield put({ type: "VERIFY_USER_FAILED", message: e.message });
@@ -87,8 +87,19 @@ function* fetchArtistEvents(action) {
     }
 }
 
+function* searchDatabase(action) {
+    try {
+        console.log(action.payload.keyword)
+        const { data: artists } = yield call(api.fetchArtistsByKeyword, action.payload.keyword)
+        console.log(artists)
+        yield put({ type: "FETCH_ARTISTS_BY_KEYWORD_SUCCEEDED", payload: { artists } })
+    } catch (e) {
+        yield put({ type: "FETCH_ARTISTS_BY_KEYWORD_FAILED", payload: e.message })
+    }
+}
+
 function* watchAppRequests() {
-    
+    yield takeEvery("SEARCH_DATABASE", searchDatabase)
 }
 
 function* watchUserRequests() {

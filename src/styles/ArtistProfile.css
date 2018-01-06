@@ -21,6 +21,7 @@
 .artist-event-header{
     font-size: 34px;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .artist-event{
@@ -33,4 +34,12 @@
 
 .artist-event:last-child{
     border-bottom: none;
+}
+
+.artist-event-column{
+    display: flex;
+}
+
+.artist-event-date{
+    width: 100px;
 }

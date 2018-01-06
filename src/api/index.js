@@ -13,6 +13,7 @@ const client = axios.create({
 export const fetchAllArtists = () => (client.get('/artists'))
 export const fetchAllEvents = () => (client.get('/events'))
 export const fetchArtist = (artistId) => (client.get(`/artists/${artistId}`))
+export const fetchArtistsByKeyword = (keyword) => (client.get(`/artists?name=${keyword}`))
 
 // Events
 export const fetchArtistEvents = (artistId) => (client.get(`/events?artistId=${artistId}`))

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import {LoginModal, SignupModal, UserMenu, LoginLinks} from './NavbarComponents'
+import { LoginModal, SignupModal, UserMenu, LoginLinks } from './NavbarComponents'
 
 import '../../styles/Navbar.css'
 
 const AppLogo = () => <div className='logo'><NavLink to="/">GigAlert</NavLink></div>
 
-const SearchBar = () => (
+const SearchBar = ({ searchBarValue, onChange, onKeyUp }) => (
     <div className='nav-links'>
-        <input type="text" className="search-input" placeholder="Search..." />
+        <input id="searchBar" type="text" className="search-input" placeholder="Search..." value={searchBarValue} onChange={(e) => onChange(e)} onKeyUp={(e) => onKeyUp(e)} />
         <NavLink className="nav-btn" to="/artists">Artists</NavLink>
         <NavLink className="nav-btn" to="/events">Events</NavLink>
     </div>
@@ -33,7 +33,7 @@ export default class Navbar extends Component {
         return (
             <div id="navbar" className="navbar noselect">
                 <AppLogo />
-                <SearchBar />
+                <SearchBar {...this.props} />
                 <UserInfo {...this.props} />
                 <UserModals {...this.props} />
             </div>

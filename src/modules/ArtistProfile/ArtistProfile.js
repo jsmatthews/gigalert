@@ -18,25 +18,28 @@ const eventDate = (date) => {
     let dateObj = new Date(date)
 
     let month = dateObj.toLocaleString("en-us", { month: "short" });
-    let day = `${dateObj.getDate()}`.padStart(2, "0");
+    let day = String(dateObj.getDate()).padStart(2, "0");
 
     return `${month} ${day}`;
 }
 
 const ArtistEvents = ({ events }) => {
-    return events.map(event => <ArtistEvent key={event.id} {...event} />)
+    let sortedEvents = [].concat(events).sort((a, b) => a.date > b.date)
+    return sortedEvents.map(event => <ArtistEvent key={event.id} {...event} />)
 }
 
 const ArtistEvent = ({ title, location, date }) => (
     <div className="artist-event" >
-        <div className="artist-event-title">
-            {title}
+        <div className="artist-event-column">
+            <div className="artist-event-date">
+                {eventDate(date)}
+            </div>
+            <div className="artist-event-title">
+                {title}
+            </div>
         </div>
         <div className="artist-event-location">
             {location}
-        </div>
-        <div className="artist-event-date">
-            {eventDate(date)}
         </div>
     </div>
 )

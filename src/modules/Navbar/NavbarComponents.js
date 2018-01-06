@@ -50,6 +50,10 @@ const UserMenuDropdown = ({ id, logOut, hideMenu }) => (
             <UserMenuDropdownItem id="dashboardLink" icon="rocket" label="Dashboard" />
         </Link>
 
+        <Link to='/dashboard/accountSettings' >
+            <UserMenuDropdownItem id="accountSettingsLink" icon="cog" label="Settings" />
+        </Link>
+
         <div onClick={(e) => logOut(e)}>
             <UserMenuDropdownItem icon="sign-out" label="Log Out" />
         </div>
