@@ -8,7 +8,9 @@ import {
     hideUserMenu,
     updateSearchBarValue,
     clearSearchBarValue,
-    searchDatabase
+    searchDatabase,
+    displaySearch,
+    hideSearch
 } from '../../actions/index'
 
 import Navbar from './Navbar'
@@ -30,15 +32,28 @@ class NavbarContainer extends Component {
     }
 
     handleSearchBarKeyUp(e) {
-        if (e.keyCode === 27) {
-            this.props.dispatch(clearSearchBarValue())
-            return;
-        }
-
-        if (e.keyCode === 13) {
-            if(typeof this.props.searchBarValue !== 'string') return;
-            this.props.dispatch(searchDatabase(this.props.searchBarValue))
-            return;
+        switch (e.keyCode) {
+            case 27: {
+                this.props.dispatch(clearSearchBarValue())
+                this.props.dispatch(hideSearch())
+                break;
+            }
+            case 13: {
+                if (typeof this.props.searchBarValue !== 'string') return;
+                this.props.dispatch(searchDatabase(this.props.searchBarValue))
+                break;
+            }
+            default: {
+                this.props.dispatch(searchDatabase(this.props.searchBarValue))
+                if (this.props.searchBarValue.length === 1) {
+                    this.props.dispatch(displaySearch())
+                    break;
+                }
+                if (this.props.searchBarValue.length === 0) {
+                    this.props.dispatch(hideSearch())
+                    break;
+                }
+            }
         }
     }
 
@@ -74,8 +89,8 @@ class NavbarContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { displayLoginModal, displaySignupModal, userMenuDisplayed, searchBarValue } = state.app;
-    return { displayLoginModal, displaySignupModal, userMenuDisplayed, searchBarValue }
+    const { displayLoginModal, displaySignupModal, userMenuDisplayed, searchBarValue, displaySearch } = state.app;
+    return { displayLoginModal, displaySignupModal, userMenuDisplayed, searchBarValue, displaySearch }
 }
 
 export default connect(mapStateToProps)(NavbarContainer)

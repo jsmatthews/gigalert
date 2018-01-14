@@ -1,0 +1,14 @@
+.search-list {
+    display: flex;
+    flex-direction: column;
+    background: #f5fff5;
+    width: 330px;
+    position: absolute;
+}
+
+.search-list-row{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 50px;
+}

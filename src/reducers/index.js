@@ -1,5 +1,6 @@
 const defaultApp = {
     searchBarValue: "",
+    displaySearch: false,
     displayLoginModal: false,
     displaySignupModal: false,
     userMenuDisplayed: false
@@ -38,6 +39,8 @@ export function appReducer(state = defaultApp, action) {
 
         case 'UPDATE_SEARCH_BAR_VALUE': return { ...state, searchBarValue: action.payload.value }
         case 'CLEAR_SEARCH_BAR_VALUE': return { ...state, searchBarValue: "" }
+        case 'DISPLAY_SEARCH_LIST': return { ...state, displaySearch: true }
+        case 'HIDE_SEARCH_LIST': return { ...state, displaySearch: false }
 
         default: return state;
     }
@@ -54,6 +57,8 @@ export function artistsReducer(state = defaultArtists, action) {
         case 'FETCH_ARTIST_EVENTS_FAILED':
         case 'FETCH_ALL_ARTISTS_FAILED': return { ...state, artistsError: action.payload }
         case 'FETCH_ARTISTS_BY_KEYWORD_FAILED': return { ...state, artistsError: action.payload }
+
+        case 'CLEAR_SEARCHED_ARTISTS': return { ...state, searchedArtists: [] }
 
         default: return state;
     }
