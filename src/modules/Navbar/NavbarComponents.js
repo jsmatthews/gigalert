@@ -23,10 +23,10 @@ export const SignupModal = ({ closeModal }) => (
 )
 
 export const UserMenu = ({ currentUser, logOut, toggleUserMenu, userMenuDisplayed, hideMenu }) => (
-    <div>
+    <React.Fragment>
         <UserIcon {...currentUser} userMenuDisplayed={userMenuDisplayed} toggleUserMenu={toggleUserMenu} type={user_menu_dropdown_modal_type} />
         {(userMenuDisplayed) ? <UserMenuDropdown id={currentUser.id} logOut={logOut} hideMenu={hideMenu} /> : null}
-    </div>
+    </React.Fragment>
 )
 
 export const LoginLinks = ({ openModal }) => (

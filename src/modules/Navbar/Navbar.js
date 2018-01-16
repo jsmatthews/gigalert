@@ -24,16 +24,16 @@ const SearchBar = (props) => (
 )
 
 const UserInfo = (props) => (
-    <div>
+    <React.Fragment>
         {(props.isLoggedIn) ? <UserMenu {...props} /> : <LoginLinks {...props} />}
-    </div>
+    </React.Fragment>
 )
 
 const UserModals = ({ displayLoginModal, displaySignupModal, closeModal }) => (
-    <div>
+    <React.Fragment>
         {(displayLoginModal) ? <LoginModal closeModal={closeModal} /> : null}
         {(displaySignupModal) ? <SignupModal closeModal={closeModal} /> : null}
-    </div>
+    </React.Fragment>
 )
 
 export default class Navbar extends Component {
