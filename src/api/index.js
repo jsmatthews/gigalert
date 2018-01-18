@@ -3,41 +3,14 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import gql from 'graphql-tag';
 
+import { usersQuery } from './UserQueries'
+import { artistsQuery } from './ArtistQueries'
+import { eventsQuery } from './EventQueries'
 
 export const apolloClient = new ApolloClient({
     link: new HttpLink({ uri: "http://localhost:1337/graphql/", }),
     cache: new InMemoryCache()
 });
-
-const usersQuery = gql`
-query fetchUsers($id: Int, $name: String, $email: String, $password: String){
-    users(id: $id, name: $name, email: $email, password: $password) {
-        id
-        name
-        email
-        password
-    }
-}`
-
-const artistsQuery = gql`
-query fetchArtists($id: Int, $name: String, $description: String){
-    artists(id: $id, name: $name, description: $description) {
-        id
-        name
-        description
-    }
-}`
-
-const eventsQuery = gql`
-query fetchEvents($id: Int, $title: String, $location: String, $artistId:Int, $date: String){
-    events(id: $id, title: $title, location: $location, artistId: $artistId, date: $date) {
-        id
-        title
-        location
-        artistId
-        date
-    }
-}`
 
 
 // Artists
