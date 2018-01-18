@@ -1,11 +1,7 @@
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-
 import gql from 'graphql-tag';
-
-import axios from 'axios'
-
 
 
 export const apolloClient = new ApolloClient({
@@ -13,45 +9,50 @@ export const apolloClient = new ApolloClient({
     cache: new InMemoryCache()
 });
 
-const booksQuery = {
-    query:
-        gql`{   
-            users {
-                id
-                author
-            } }`
-}
+const usersQuery = gql`
+query fetchUsers($id: Int, $name: String, $email: String, $password: String){
+    users(id: $id, name: $name, email: $email, password: $password) {
+        id
+        name
+        email
+        password
+    }
+}`
 
-apolloClient.query(booksQuery).then((res) => console.log(res));
+const artistsQuery = gql`
+query fetchArtists($id: Int, $name: String, $description: String){
+    artists(id: $id, name: $name, description: $description) {
+        id
+        name
+        description
+    }
+}`
 
-
-
-
-
-
-const API_BASE_URL = 'http://localhost:3001';
-
-const client = axios.create({
-    baseURL: API_BASE_URL,
-    headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-    },
-})
+const eventsQuery = gql`
+query fetchEvents($id: Int, $title: String, $location: String, $artistId:Int, $date: String){
+    events(id: $id, title: $title, location: $location, artistId: $artistId, date: $date) {
+        id
+        title
+        location
+        artistId
+        date
+    }
+}`
 
 
 // Artists
-export const fetchAllArtists = () => (client.get('/artists'))
-export const fetchAllEvents = () => (client.get('/events'))
-export const fetchArtist = (artistId) => (client.get(`/artists/${artistId}`))
-export const fetchArtistsByKeyword = (keyword) => (client.get(`/artists?name=${keyword}`))
+export const fetchAllArtists = () => (apolloClient.query({ query: artistsQuery, variables: {} }))
+export const fetchAllEvents = () => (apolloClient.query({ query: eventsQuery, variables: {} }))
+export const fetchArtist = (id) => (apolloClient.query({ query: artistsQuery, variables: { id } }))
+export const fetchArtistsByKeyword = (name) => (apolloClient.query({ query: artistsQuery, variables: { name } }))
 
 // Events
-export const fetchArtistEvents = (artistId) => (client.get(`/events?artistId=${artistId}`))
+export const fetchArtistEvents = (artistId) => (apolloClient.query({ query: eventsQuery, variables: { artistId } }))
 
 // Users
-export const signUpUser = ({ email, password }) => (client.post(`/users`, { email: email, password: password }))
-export const loginUser = ({ email, password }) => (client.get(`/users?email=${email}&password=${password}`))
-export const fetchUser = (userId) => (client.get(`/users/${userId}`))
-export const verifyUser = (userId) => (client.get(`/users?id=${userId}`))
-export const logOutUser = (userId) => (client.get(`/users?id=${userId}`))
+export const signUpUser = ({ email, password }) => (apolloClient.query({ query: usersQuery, variables: { email, password } }))
+export const loginUser = ({ email, password }) => (apolloClient.query({ query: usersQuery, variables: { email, password } }))
+
+export const fetchUser = (id) => (apolloClient.query({ query: usersQuery, variables: { id } }))
+export const verifyUser = (id) => (apolloClient.query({ query: usersQuery, variables: { id } }))
+export const logOutUser = (id) => (apolloClient.query({ query: usersQuery, variables: { id } }))

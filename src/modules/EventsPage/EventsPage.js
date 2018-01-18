@@ -8,6 +8,6 @@ const Event = ({ id, name, location, date }) => (
 
 export default class EventsPage extends Component {
     render() {
-        return this.props.events.map(event => <Event key={event.id} {...event} />)
+        return (this.props.events !== null) ? this.props.events.map(event => <Event key={event.id} {...event} />) : null
     }
 }
