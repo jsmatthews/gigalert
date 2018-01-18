@@ -89,8 +89,8 @@ function* fetchArtistEvents(action) {
 
 function* searchDatabase(action) {
     try {
-        const { data: artists } = yield call(api.fetchArtistsByKeyword, action.payload.keyword)
-        yield put({ type: "FETCH_ARTISTS_BY_KEYWORD_SUCCEEDED", payload: { artists } })
+        const { data } = yield call(api.fetchArtistsByKeyword, action.payload.keyword)
+        yield put({ type: "FETCH_ARTISTS_BY_KEYWORD_SUCCEEDED", payload: { artists: data.artists } })
     } catch (e) {
         yield put({ type: "FETCH_ARTISTS_BY_KEYWORD_FAILED", payload: e.message })
     }
