@@ -14,18 +14,18 @@ export default class DropdownMenu extends Component {
         this.logOutLink = document.getElementById("logOutLink");
 
         this.root = document.getElementById(this.props.dropdownMenuRoot)
-        const rootWidth = (this.root !== null) ? this.root.offsetWidth : 100
+        const leftVal = (this.root !== null) ? (this.root.offsetWidth / 2) - (8.5 / 2) : 50
 
         this.dropdownContainer = document.createElement('div');
         this.dropdownContainer.className = "dropdown-container";
 
         this.triangleFront = document.createElement('div');
         this.triangleFront.className = "triangle-front";
-        this.triangleFront.style.width = `${rootWidth}px`
+        this.triangleFront.style.left = `${leftVal}px`
 
         this.triangleBack = document.createElement('div');
         this.triangleBack.className = "triangle-back";
-        this.triangleBack.style.width = `${rootWidth}px`
+        this.triangleBack.style.left = `${leftVal}px`
 
         this.dropdownEl = document.createElement('div');
         this.dropdownEl.className = "dropdown";

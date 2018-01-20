@@ -10,7 +10,7 @@ import thunk from 'redux-thunk'
 import rootSaga from './sagas/sagas'
 
 import { ApolloProvider } from 'react-apollo';
-import { apolloClient } from './api/index'
+import { ac } from './api/index'
 
 import { appReducer, artistsReducer, eventsReducer, usersReducer } from './reducers/index'
 
@@ -35,7 +35,7 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Provider store={store} >
-        <ApolloProvider store={store} client={apolloClient}>
+        <ApolloProvider store={store} client={ac}>
             <BrowserRouter>
                 <Route path="/" component={App} />
             </BrowserRouter>
