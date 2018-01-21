@@ -7,6 +7,7 @@ import HomePage from '../modules/HomePage/HomePage'
 import ArtistsPageContainer from '../modules/ArtistsPage/ArtistsPageContainer'
 import ArtistProfileContainer from '../modules/ArtistProfile/ArtistProfileContainer'
 import EventsPageContainer from '../modules/EventsPage/EventsPageContainer'
+import EventPageContainer from '../modules/EventPage/EventPageContainer'
 import DashboardContainer from '../modules/Dashboard/DashboardContainer'
 
 import { verifyUser, logOutUser, hideUserMenu } from '../actions/index'
@@ -44,6 +45,7 @@ class App extends Component {
                     <Route path="/artists" exact component={ArtistsPageContainer} />
                     <Route path="/artists/:artistId" component={ArtistProfileContainer} />
                     <Route path="/events" component={EventsPageContainer} />
+                    <Route path="/event/:eventId" component={EventPageContainer} />
                     <Route path="/dashboard" component={DashboardContainer} />
                 </div>
             </div>

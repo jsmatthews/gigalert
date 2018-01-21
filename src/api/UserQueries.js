@@ -10,3 +10,10 @@ query fetchUsers($id: Int, $name: String, $email: String, $password: String){
         password
     }
 }`
+
+export const signUpUserMutation = gql`
+mutation signUpUser($email: String, $password: String){
+    signUpUser(email: $email, password: $password) {
+        email
+    }
+}`

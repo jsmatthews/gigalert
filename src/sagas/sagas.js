@@ -3,6 +3,7 @@ import * as api from '../api/index'
 
 import { login_modal_type, signup_modal_type } from '../constants'
 
+// Users
 function* fetchUser(action) {
     try {
         const { data } = yield call(api.fetchUser, action.payload.userId);
@@ -25,7 +26,7 @@ function* verifyUser(action) {
 function* signUp(action) {
     try {
         const { data } = yield call(api.signUpUser, action.payload.userInfo)
-        yield put({ type: 'USER_SIGNUP_SUCCEEDED', payload: { currentUser: data.users[0] } })
+        yield put({ type: 'USER_SIGNUP_SUCCEEDED', payload: { currentUser: data.signUpUser } })
         yield put({ type: 'HIDE_MODAL', payload: { type: signup_modal_type } })
     } catch (e) {
         yield put({ type: 'USER_SIGNUP_FAILED', payload: e.message })
@@ -35,7 +36,7 @@ function* signUp(action) {
 function* logIn(action) {
     try {
         const { data } = yield call(api.loginUser, action.payload.userInfo)
-        yield put({ type: "USER_LOGIN_SUCCEEDED", payload: { currentUser: data.users[0] } })
+        yield put({ type: "USER_LOGIN_SUCCEEDED", payload: { currentUser: data.loginUser } })
         yield put({ type: 'HIDE_MODAL', payload: { type: login_modal_type } })
     } catch (e) {
         yield put({ type: "USER_LOGIN_FAILED", payload: e.message })
@@ -51,21 +52,14 @@ function* logOut(action) {
     }
 }
 
+
+// Artists
 function* fetchAllArtists(action) {
     try {
         const { data } = yield call(api.fetchAllArtists)
         yield put({ type: "FETCH_ALL_ARTISTS_SUCCEEDED", payload: { artists: data.artists } })
     } catch (e) {
         yield put({ type: "FETCH_ALL_ARTISTS_FAILED", payload: e.message })
-    }
-}
-
-function* fetchAllEvents(action) {
-    try {
-        const { data } = yield call(api.fetchAllEvents)
-        yield put({ type: "FETCH_ALL_EVENTS_SUCCEEDED", payload: { events: data.events } })
-    } catch (e) {
-        yield put({ type: "FETCH_ALL_EVENTS_FAILED", payload: e.message })
     }
 }
 
@@ -84,6 +78,25 @@ function* fetchArtistEvents(action) {
         yield put({ type: "FETCH_ARTIST_EVENTS_SUCCEEDED", payload: { events: data.events } })
     } catch (e) {
         yield put({ type: "FETCH_ARTIST_EVENTS_FAILED", payload: e.message })
+    }
+}
+
+// Events
+function* fetchAllEvents(action) {
+    try {
+        const { data } = yield call(api.fetchAllEvents)
+        yield put({ type: "FETCH_ALL_EVENTS_SUCCEEDED", payload: { events: data.events } })
+    } catch (e) {
+        yield put({ type: "FETCH_ALL_EVENTS_FAILED", payload: e.message })
+    }
+}
+
+function* fetchEvent(action) {
+    try {
+        const { data } = yield call(api.fetchEvent, action.payload.id)
+        yield put({ type: "FETCH_EVENT_SUCCEEDED", payload: { event: data.events[0] } })
+    } catch (e) {
+        yield put({ type: "FETCH_EVENT_FAILED", payload: e.message })
     }
 }
 
@@ -116,6 +129,7 @@ function* watchArtistRequests() {
 
 function* watchEventRequests() {
     yield takeEvery("FETCH_ALL_EVENTS_REQUESTED", fetchAllEvents)
+    yield takeEvery("FETCH_EVENT_REQUESTED", fetchEvent)
 }
 
 export default function* rootSaga() {

@@ -1,4 +1,4 @@
-.artist-image{
+.artist-image {
     display: flex;
     height: 350px;
     align-items: flex-end;
@@ -7,39 +7,45 @@
     padding: 15px;
 }
 
-.artist-name{
+.artist-name {
     font-size: 24px;
     color: #fff;
 }
 
-.artist-events-table{
+.artist-events-table {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
 }
 
-.artist-event-header{
+.artist-event-header {
     font-size: 34px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.artist-event{
+.artist-event {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 50px;
+    padding: 0 5px;
     border-bottom: 1px solid #ddd;
 }
 
-.artist-event:last-child{
+.artist-event:hover {
+    cursor: pointer;
+    background: #f5fff5;
+}
+
+.artist-event:last-child {
     border-bottom: none;
 }
 
-.artist-event-column{
+.artist-event-column {
     display: flex;
 }
 
-.artist-event-date{
+.artist-event-date {
     width: 100px;
 }

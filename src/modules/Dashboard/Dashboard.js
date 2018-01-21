@@ -7,45 +7,34 @@ import AccountSettings from './AccountSettings';
 const Avatar = ({ avatarSource }) => <div className="avatar"><img src={avatarSource} alt="avatar" /></div>
 const UserName = ({ userName }) => <div className="username">{userName}</div>
 
-const DashboardMenu = (props) => (
-    <div className="dashboard-menu">
-        {props.children.map(child => <DashboardMenuRow key={child.props.order} child={child} />)}
+
+const DashboardNavItem = ({ label, to, order }) => (
+    <div className="dashboard-nav-item" order={order}>
+        <NavLink className="dashboard-nav-btn" activeClassName="dashboard-nav-active" to={to}>{label}</NavLink>
     </div>
 )
 
-const DashboardMenuRow = (props) => <div className="dashboard-menu-row">{props.child}</div>
-
-const DashboardMenuItem = ({ label, to, order }) => (
-    <div className="dashboard-menu-item" order={order}>
-        <NavLink className="dashboard-menu-nav-btn" to={to}>{label}</NavLink>
-    </div>
-)
-
-const DashboardSidebar = (props) => (
-    <div className="dashboard-sidebar">
-        <Avatar />
-        <UserName userName={props.currentUser.name} />
-        <DashboardMenu>
-            <DashboardMenuItem order="1" label="Events" to="/events" />
-            <DashboardMenuItem order="2" label="Artists" to="/artists" />
-            <DashboardMenuItem order="3" label="Account" to='/dashboard/accountSettings' />
-        </DashboardMenu>
+const DashboardNav = (props) => (
+    <div className="dashboard-nav">
+        <DashboardNavItem order="1" label="Main" to="/dashboard/main" />
+        <DashboardNavItem order="2" label="Events" to="/dashboard/events" />
+        <DashboardNavItem order="3" label="Account" to='/dashboard/accountSettings' />
     </div>
 )
 
 const DashboardMain = (props) => (
     <div className='dashboard-main'>
+        <Route path="/dashboard/main" component={AccountSettings} />
+        <Route path="/dashboard/events" component={AccountSettings} />
         <Route path="/dashboard/accountSettings" component={AccountSettings} />
     </div>
 )
 
 export class Dashboard extends Component {
     render() {
-        // const { id } = this.props.currentUser;
-        // if (id === undefined || id === null ) return <Redirect to="/" />
         return (
             <div className='page dashboard'>
-                <DashboardSidebar {...this.props} />
+                <DashboardNav {...this.props} />
                 <DashboardMain {...this.props} />
             </div>
         )

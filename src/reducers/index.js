@@ -15,6 +15,7 @@ const defaultArtists = {
 }
 
 const defaultEvents = {
+    event: null,
     events: [],
     eventsError: null
 }
@@ -69,6 +70,9 @@ export function eventsReducer(state = defaultEvents, action) {
         case 'FETCH_ALL_EVENTS_SUCCEEDED': return { ...state, events: action.payload.events }
         case 'FETCH_ALL_EVENTS_FAILED': return { ...state, eventsError: action.payload }
 
+        case 'FETCH_EVENT_SUCCEEDED': return { ...state, event: action.payload.event }
+        case 'FETCH_EVENT_FAILED': return { ...state, eventsError: action.payload }
+
         default: return state;
     }
 }
@@ -79,7 +83,7 @@ export function usersReducer(state = defaultUsers, action) {
         case 'USER_SIGNUP_SUCCEEDED': return { ...state, ...action.payload, isLoggedIn: true };
 
         case 'USER_LOGIN_FAILED':
-        case 'USER_SIGNUP_FAILED': return { ...state, ...action.payload, isLoggedIn: false };
+        case 'USER_SIGNUP_FAILED': return { ...state, userError: action.payload, isLoggedIn: false };
 
         case 'USER_LOGOUT_SUCCEEDED': return { ...state, currentUser: {}, isLoggedIn: false };
         case 'USER_LOGOUT_FAILED': return { ...state, isLoggedIn: true };

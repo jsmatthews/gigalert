@@ -6,6 +6,7 @@ export const fetchArtistEvents = (artistId) => ({ type: 'FETCH_ARTIST_EVENTS_REQ
 
 // Event Actions
 export const fetchAllEvents = () => ({ type: 'FETCH_ALL_EVENTS_REQUESTED' })
+export const fetchEvent = (id) => ({ type: 'FETCH_EVENT_REQUESTED', payload: { id } })
 
 // User Actions
 export const signUpUser = (userInfo) => ({ type: 'USER_SIGNUP_REQUESTED', payload: { userInfo } })

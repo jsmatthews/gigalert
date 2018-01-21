@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+
 import '../../styles/ArtistProfile.css'
 
 const ArtistEventsHeader = () => (
@@ -28,20 +30,22 @@ const ArtistEvents = ({ events }) => {
     return sortedEvents.map(event => <ArtistEvent key={event.id} {...event} />)
 }
 
-const ArtistEvent = ({ title, location, date }) => (
-    <div className="artist-event" >
-        <div className="artist-event-column">
-            <div className="artist-event-date">
-                {eventDate(date)}
+const ArtistEvent = ({ id, title, location, date }) => (
+    <Link to={`/event/${id}`} >
+        <div className="artist-event" >
+            <div className="artist-event-column">
+                <div className="artist-event-date">
+                    {eventDate(date)}
+                </div>
+                <div className="artist-event-title">
+                    {title}
+                </div>
             </div>
-            <div className="artist-event-title">
-                {title}
+            <div className="artist-event-location">
+                {location}
             </div>
         </div>
-        <div className="artist-event-location">
-            {location}
-        </div>
-    </div>
+    </Link>
 )
 
 const ArtistImage = ({ name }) => (
