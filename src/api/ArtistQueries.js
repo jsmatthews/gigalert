@@ -9,3 +9,11 @@ query fetchArtists($id: Int, $name: String, $description: String, $detailed: Boo
         description @include(if: $detailed)
     }
 }`
+
+export const addArtist = gql`
+query AddArtist($id: Int, $name: String, $description: String, $detailed: Boolean!){
+    addArtist(id: $id, name: $name, description: $description) {
+        id
+        name
+    }
+}`

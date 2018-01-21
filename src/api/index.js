@@ -3,7 +3,7 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { usersQuery } from './UserQueries'
-import { artistsQuery } from './ArtistQueries'
+import { artistsQuery, addArtist } from './ArtistQueries'
 import { eventsQuery } from './EventQueries'
 
 export const ac = new ApolloClient({
@@ -16,6 +16,8 @@ export const fetchAllArtists = () => (ac.query({ query: artistsQuery, variables:
 export const fetchAllEvents = () => (ac.query({ query: eventsQuery, variables: {} }))
 export const fetchArtist = (id) => (ac.query({ query: artistsQuery, variables: { id, detailed: true } }))
 export const fetchArtistsByKeyword = (name) => (ac.query({ query: artistsQuery, variables: { name, detailed: false } }))
+
+export const postAddArtist = (id, name) => (ac.query({ query: artistsQuery, variables: { id, name } }))
 
 // Events
 export const fetchArtistEvents = (artistId) => (ac.query({ query: eventsQuery, variables: { artistId } }))
