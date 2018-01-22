@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
@@ -91,6 +92,14 @@ class NavbarContainer extends Component {
 const mapStateToProps = (state) => {
     const { displayLoginModal, displaySignupModal, userMenuDisplayed, searchBarValue, displaySearch } = state.app;
     return { displayLoginModal, displaySignupModal, userMenuDisplayed, searchBarValue, displaySearch }
+}
+
+NavbarContainer.propTypes = {
+    displayLoginModal: PropTypes.bool,
+    displaySignupModal: PropTypes.bool,
+    userMenuDisplayed: PropTypes.bool,
+    searchBarValue: PropTypes.string,
+    displaySearch: PropTypes.bool
 }
 
 export default connect(mapStateToProps)(NavbarContainer)

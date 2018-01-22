@@ -4,9 +4,6 @@ import { Route, NavLink } from 'react-router-dom'
 import '../../styles/Dashboard.css'
 import AccountSettings from './AccountSettings';
 
-const Avatar = ({ avatarSource }) => <div className="avatar"><img src={avatarSource} alt="avatar" /></div>
-const UserName = ({ userName }) => <div className="username">{userName}</div>
-
 
 const DashboardNavItem = ({ label, to, order }) => (
     <div className="dashboard-nav-item" order={order}>

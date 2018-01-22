@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchArtist, fetchArtistEvents } from '../../actions/index'
 
@@ -26,6 +27,11 @@ class ArtistProfileContainer extends Component {
 const mapStateToProps = (state) => {
     const { artistProfile, artistEvents } = state.artists;
     return { artistProfile, artistEvents }
+}
+
+ArtistProfileContainer.propTypes = {
+    artistProfile: PropTypes.object,
+    artistEvents: PropTypes.array
 }
 
 export default connect(mapStateToProps)(ArtistProfileContainer)

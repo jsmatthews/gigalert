@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import EventPage from './EventPage'
@@ -17,6 +18,10 @@ class EventPageContainer extends Component {
 const mapStateToProps = state => {
     const { event } = state.events
     return { event }
+}
+
+EventPageContainer.propTypes = {
+    event: PropTypes.object
 }
 
 export default connect(mapStateToProps)(EventPageContainer)

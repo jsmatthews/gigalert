@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchAllEvents } from '../../actions/index'
 
@@ -17,6 +18,10 @@ class EventsPageContainer extends Component {
 function mapStateToProps(state) {
     const { events } = state.events;
     return { events };
+}
+
+EventsPageContainer.propTypes = {
+    events: PropTypes.array
 }
 
 export default connect(mapStateToProps)(EventsPageContainer)

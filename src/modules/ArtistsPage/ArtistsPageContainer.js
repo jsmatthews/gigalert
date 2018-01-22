@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchAllArtists } from '../../actions/index'
 import ArtistList from '../../components/Artists/ArtistList'
@@ -17,6 +18,10 @@ class ArtistsPageContainer extends Component {
 function mapStateToProps(state) {
     const { artists } = state.artists;
     return { artists };
+}
+
+ArtistsPageContainer.propTypes = {
+    artists: PropTypes.array
 }
 
 export default connect(mapStateToProps)(ArtistsPageContainer)

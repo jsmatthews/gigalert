@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -56,6 +57,12 @@ class App extends Component {
 const mapStateToProps = (state) => {
     const { isLoggedIn, currentUser, isReady } = state.users;
     return { isLoggedIn, currentUser, isReady };
+}
+
+App.propTypes = {
+    isLoggedIn: PropTypes.bool,
+    currentUser: PropTypes.object,
+    isReady: PropTypes.bool
 }
 
 export default connect(mapStateToProps)(App);
