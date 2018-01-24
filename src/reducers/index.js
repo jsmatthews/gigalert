@@ -1,12 +1,12 @@
 //@flow
 
-type Artist = {
+export type Artist = {
     id: number;
     name: string;
     description: string;
 }
 
-type Event = {
+export type Event = {
     id: number;
     title: string;
     location: string;
@@ -14,10 +14,10 @@ type Event = {
     date: string;
 }
 
-type User = {
-    id: ?number;
+export type User = {
+    id: number;
     name: string;
-    email: ?string;
+    email: string;
 }
 
 type Action = {

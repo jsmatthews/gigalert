@@ -1,7 +1,6 @@
 //@flow
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { fetchAllArtists } from '../../actions/index'
@@ -12,7 +11,7 @@ import '../../styles/HomePage.css'
 
 type Props = {
     artists: Array<{name:string}>,
-    dispatch: function
+    dispatch: Function
 }
 
 class HomePage extends Component<Props> {

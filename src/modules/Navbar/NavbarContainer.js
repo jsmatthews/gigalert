@@ -23,7 +23,7 @@ type Props = {
     userMenuDisplayed: boolean,
     searchBarValue: string,
     displaySearch: boolean,
-    dispatch: function
+    dispatch: Function
 }
 
 class NavbarContainer extends Component<Props> {

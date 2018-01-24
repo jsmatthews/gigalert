@@ -1,12 +1,21 @@
+//@flow
+
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { fetchUser, hideUserMenu } from '../../actions/index'
 import { Dashboard } from './Dashboard'
+import type { User } from '../../reducers/index'
 
-class DashboardContainer extends Component {
+type Props = {
+    currentUser: User,
+    isLoggedIn: boolean,
+    userMenuDisplayed: boolean,
+    dispatch: Function
+}
+
+class DashboardContainer extends Component<Props> {
     componentWillMount() {
         this.props.dispatch(fetchUser(this.props.currentUser.id))
 
@@ -25,12 +34,6 @@ const mapStateToProps = (state) => {
     const { currentUser, isLoggedIn } = state.users;
     const { userMenuDisplayed } = state.app;
     return { currentUser, isLoggedIn, userMenuDisplayed };
-}
-
-DashboardContainer.propTypes = {
-    currentUser: PropTypes.object,
-    isLoggedIn: PropTypes.boolean,
-    userMenuDisplayed: PropTypes.boolean
 }
 
 export default connect(mapStateToProps)(DashboardContainer)
