@@ -1,5 +1,6 @@
+//@flow
+
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
@@ -16,7 +17,16 @@ import {
 
 import Navbar from './Navbar'
 
-class NavbarContainer extends Component {
+type Props = {
+    displayLoginModal: boolean,
+    displaySignupModal: boolean,
+    userMenuDisplayed: boolean,
+    searchBarValue: string,
+    displaySearch: boolean,
+    dispatch: function
+}
+
+class NavbarContainer extends Component<Props> {
     constructor(props) {
         super(props)
 
@@ -28,11 +38,11 @@ class NavbarContainer extends Component {
         this.handleSearchBarKeyUp = this.handleSearchBarKeyUp.bind(this)
     }
 
-    handleSearchBarInput(e) {
+    handleSearchBarInput: Function = (e) => {
         this.props.dispatch(updateSearchBarValue(e.target.value))
     }
 
-    handleSearchBarKeyUp(e) {
+    handleSearchBarKeyUp: Function = (e) => {
         switch (e.keyCode) {
             case 27: {
                 this.props.dispatch(clearSearchBarValue())
@@ -58,15 +68,15 @@ class NavbarContainer extends Component {
         }
     }
 
-    openModal(type) {
+    openModal: Function = (type) => {
         this.props.dispatch(displayModal(type))
     }
 
-    closeModal(type) {
+    closeModal: Function = (type) => {
         this.props.dispatch(hideModal(type))
     }
 
-    toggleUserMenu() {
+    toggleUserMenu: Function = () => {
         if (this.props.userMenuDisplayed) {
             this.props.dispatch(hideUserMenu())
         } else {
@@ -74,7 +84,7 @@ class NavbarContainer extends Component {
         }
     }
 
-    hideMenu() {
+    hideMenu: Function = () => {
         this.props.dispatch(hideUserMenu())
     }
 
@@ -92,14 +102,6 @@ class NavbarContainer extends Component {
 const mapStateToProps = (state) => {
     const { displayLoginModal, displaySignupModal, userMenuDisplayed, searchBarValue, displaySearch } = state.app;
     return { displayLoginModal, displaySignupModal, userMenuDisplayed, searchBarValue, displaySearch }
-}
-
-NavbarContainer.propTypes = {
-    displayLoginModal: PropTypes.bool,
-    displaySignupModal: PropTypes.bool,
-    userMenuDisplayed: PropTypes.bool,
-    searchBarValue: PropTypes.string,
-    displaySearch: PropTypes.bool
 }
 
 export default connect(mapStateToProps)(NavbarContainer)

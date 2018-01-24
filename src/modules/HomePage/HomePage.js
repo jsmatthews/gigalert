@@ -1,3 +1,5 @@
+//@flow
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -8,7 +10,12 @@ import ArtistList from '../../components/Artists/ArtistList'
 
 import '../../styles/HomePage.css'
 
-class HomePage extends Component {
+type Props = {
+    artists: Array<{name:string}>,
+    dispatch: function
+}
+
+class HomePage extends Component<Props> {
 
     componentDidMount() {
         this.props.dispatch(fetchAllArtists())
@@ -22,10 +29,6 @@ class HomePage extends Component {
 const mapStateToProps = (state) => {
     const { artists } = state.artists
     return { artists }
-}
-
-HomePage.propTypes = {
-    artists: PropTypes.array
 }
 
 export default connect(mapStateToProps)(HomePage)
