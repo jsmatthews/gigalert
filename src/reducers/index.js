@@ -12,7 +12,7 @@ type Action = {
     type: string;
     payload: {
         type: string;
-        value: string;
+        keyword: string;
         artists: Array<Artist>;
         artist: Artist;
         events: Array<Event>;
@@ -87,7 +87,7 @@ export function appReducer(state: AppState = defaultApp, action: Action) {
         case 'DISPLAY_USER_MENU': return { ...state, userMenuDisplayed: true }
         case 'HIDE_USER_MENU': return { ...state, userMenuDisplayed: false }
 
-        case 'UPDATE_SEARCH_BAR_VALUE': return { ...state, searchBarValue: action.payload.value }
+        case 'UPDATE_SEARCH_BAR_VALUE': return { ...state, searchBarValue: action.payload.keyword }
         case 'CLEAR_SEARCH_BAR_VALUE': return { ...state, searchBarValue: "" }
         case 'DISPLAY_SEARCH_LIST': return { ...state, displaySearch: true }
         case 'HIDE_SEARCH_LIST': return { ...state, displaySearch: false }
