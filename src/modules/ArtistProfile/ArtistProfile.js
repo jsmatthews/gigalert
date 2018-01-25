@@ -1,7 +1,12 @@
+//@flow
+
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import '../../styles/ArtistProfile.css'
+
+import type { Artist } from '../../api/ArtistQueries'
+import type { Event } from '../../api/EventQueries'
 
 const ArtistEventsHeader = () => (
     <div className="artist-event-header">
@@ -26,7 +31,7 @@ const eventDate = (date) => {
 }
 
 const ArtistEvents = ({ events }) => {
-    let sortedEvents = [].concat(events).sort((a, b) => a.date > b.date)
+    let sortedEvents: Array<Event> = [].concat(events).sort((a: Event, b: Event): any => a.date > b.date)
     return sortedEvents.map(event => <ArtistEvent key={event.id} {...event} />)
 }
 
@@ -56,7 +61,9 @@ const ArtistImage = ({ name }) => (
     </div>
 )
 
-export default class ArtistProfile extends Component {
+type Props = {artistProfile: Artist; artistEvents: Array<Event> }
+
+export default class ArtistProfile extends Component<Props> {
     render() {
         return (
             <div className='page artist-profile'>

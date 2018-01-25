@@ -1,6 +1,9 @@
+//@flow
+
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/Search.css'
+import type { Artist } from '../../api/ArtistQueries'
 
 const SearchListRow = ({ id, name, handleSearchClick }) => (
     <div onClick={(e) => handleSearchClick(e)}>
@@ -12,7 +15,9 @@ const SearchListRow = ({ id, name, handleSearchClick }) => (
     </div>
 )
 
-export default class SearchList extends Component {
+type Props = { searchedArtists: Array<Artist>; handleSearchClick: Function; }
+
+export default class SearchList extends Component<Props> {
     render() {
         return (
             <div className='search-list'>

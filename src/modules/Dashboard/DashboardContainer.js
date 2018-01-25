@@ -6,14 +6,14 @@ import { connect } from 'react-redux'
 
 import { fetchUser, hideUserMenu } from '../../actions/index'
 import { Dashboard } from './Dashboard'
-import type { User } from '../../reducers/index'
+import type { dispatch } from '../../reducers/index'
+import type { User } from '../../api/UserQueries'
 
 type Props = {
-    currentUser: User,
-    isLoggedIn: boolean,
-    userMenuDisplayed: boolean,
-    dispatch: Function
-}
+    currentUser: User;
+    isLoggedIn: boolean;
+    userMenuDisplayed: boolean;
+} & dispatch;
 
 class DashboardContainer extends Component<Props> {
     componentWillMount() {

@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchAllArtists } from '../../actions/index'
 import ArtistList from '../../components/Artists/ArtistList'
 import '../../styles/Artists.css'
 
-class ArtistsPageContainer extends Component {
+import type { Artist } from '../../api/ArtistQueries'
+
+type Props = { artists: Array<Artist> }
+
+class ArtistsPageContainer extends Component<Props> {
     componentDidMount() {
         this.props.dispatch(fetchAllArtists());
     }
@@ -18,10 +21,6 @@ class ArtistsPageContainer extends Component {
 function mapStateToProps(state) {
     const { artists } = state.artists;
     return { artists };
-}
-
-ArtistsPageContainer.propTypes = {
-    artists: PropTypes.array
 }
 
 export default connect(mapStateToProps)(ArtistsPageContainer)

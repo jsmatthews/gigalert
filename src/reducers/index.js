@@ -1,23 +1,11 @@
 //@flow
 
-export type Artist = {
-    id: number;
-    name: string;
-    description: string;
-}
+import type { Artist } from '../api/ArtistQueries'
+import type { Event } from '../api/EventQueries'
+import type { User } from '../api/UserQueries'
 
-export type Event = {
-    id: number;
-    title: string;
-    location: string;
-    artistId: number;
-    date: string;
-}
-
-export type User = {
-    id: number;
-    name: string;
-    email: string;
+export type dispatch = {
+    dispatch: Function;
 }
 
 type Action = {
@@ -32,7 +20,7 @@ type Action = {
     }
 }
 
-type AppState = {
+export type AppState = {
     searchBarValue: string;
     displaySearch: boolean;
     displayLoginModal: boolean;
@@ -41,22 +29,22 @@ type AppState = {
 }
 
 type ArtistState = {
-    artists: ?Array<Artist>;
-    artistProfile: ?Artist;
-    artistEvents: ?Array<Event>;
-    artistsError: ?string;
+    artists: Array<Artist>;
+    artistProfile: Artist;
+    artistEvents: Array<Event>;
+    artistsError: any;
     searchedArtists: Array<Event>;
 }
 
 type EventState = {
-    event: ?Event;
+    event: Event;
     events: Array<Event>;
     eventsError: any;
 }
 
 type UserState = {
     isReady: boolean;
-    currentUser: ?User;
+    currentUser: User;
     isLoggedIn: boolean;
     userError: any;
 }
@@ -71,21 +59,21 @@ const defaultApp: AppState = {
 
 const defaultArtists: ArtistState = {
     artists: [],
-    artistProfile: null,
+    artistProfile: {},
     artistEvents: [],
     artistsError: null,
     searchedArtists: []
 }
 
 const defaultEvents: EventState = {
-    event: null,
+    event: {},
     events: [],
     eventsError: null
 }
 
 const defaultUsers = {
     isReady: false,
-    currentUser: null,
+    currentUser: {},
     isLoggedIn: false,
     userError: null
 }

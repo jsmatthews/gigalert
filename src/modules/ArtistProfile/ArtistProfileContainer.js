@@ -1,11 +1,25 @@
+//@flow
+
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchArtist, fetchArtistEvents } from '../../actions/index'
 
 import ArtistProfile from './ArtistProfile'
+import type { Event} from '../../api/EventQueries'
+import type { Artist } from '../../api/ArtistQueries'
 
-class ArtistProfileContainer extends Component {
+type Props = {
+    artistProfile: Artist,
+    artistEvents: Array<Event>,
+    dispatch: Function,
+    match: {
+        params: {
+            artistId: number
+        }
+    }
+}
+
+class ArtistProfileContainer extends Component<Props> {
 
     componentWillMount() {
         this.props.dispatch(fetchArtist(this.props.match.params.artistId))
@@ -27,11 +41,6 @@ class ArtistProfileContainer extends Component {
 const mapStateToProps = (state) => {
     const { artistProfile, artistEvents } = state.artists;
     return { artistProfile, artistEvents }
-}
-
-ArtistProfileContainer.propTypes = {
-    artistProfile: PropTypes.object,
-    artistEvents: PropTypes.array
 }
 
 export default connect(mapStateToProps)(ArtistProfileContainer)

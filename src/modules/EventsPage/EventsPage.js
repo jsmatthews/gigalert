@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
+//@flow
 
-const Event = ({ id, name, location, date }) => (
+import React, { Component } from 'react'
+import type { Event } from '../../api/EventQueries'
+
+const EventItem = ({ id, title, location, date }: Event) => (
     <div>
-        {id} - {name} - {location} - {date}
+        {id} - {title} - {location} - {date}
     </div>
 )
-
-export default class EventsPage extends Component {
+type Props = Event & { events: Array<Event> }
+export default class EventsPage extends Component<Props> {
     render() {
-        return (this.props.events !== null) ? this.props.events.map(event => <Event key={event.id} {...event} />) : null
+        return (this.props.events !== null) ? this.props.events.map(event => <EventItem key={event.id} {...event} />) : null
     }
 }

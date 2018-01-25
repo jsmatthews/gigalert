@@ -16,15 +16,9 @@ import {
 } from '../../actions/index'
 
 import Navbar from './Navbar'
+import type { AppState, dispatch } from '../../reducers/index'
 
-type Props = {
-    displayLoginModal: boolean,
-    displaySignupModal: boolean,
-    userMenuDisplayed: boolean,
-    searchBarValue: string,
-    displaySearch: boolean,
-    dispatch: Function
-}
+type Props = AppState & dispatch;
 
 class NavbarContainer extends Component<Props> {
     constructor(props) {
@@ -38,11 +32,11 @@ class NavbarContainer extends Component<Props> {
         this.handleSearchBarKeyUp = this.handleSearchBarKeyUp.bind(this)
     }
 
-    handleSearchBarInput: Function = (e) => {
+    handleSearchBarInput: Function = (e): void => {
         this.props.dispatch(updateSearchBarValue(e.target.value))
     }
 
-    handleSearchBarKeyUp: Function = (e) => {
+    handleSearchBarKeyUp: Function = (e): void => {
         switch (e.keyCode) {
             case 27: {
                 this.props.dispatch(clearSearchBarValue())
@@ -68,15 +62,15 @@ class NavbarContainer extends Component<Props> {
         }
     }
 
-    openModal: Function = (type) => {
+    openModal: Function = (type): void => {
         this.props.dispatch(displayModal(type))
     }
 
-    closeModal: Function = (type) => {
+    closeModal: Function = (type): void => {
         this.props.dispatch(hideModal(type))
     }
 
-    toggleUserMenu: Function = () => {
+    toggleUserMenu: Function = (): void => {
         if (this.props.userMenuDisplayed) {
             this.props.dispatch(hideUserMenu())
         } else {
@@ -84,7 +78,7 @@ class NavbarContainer extends Component<Props> {
         }
     }
 
-    hideMenu: Function = () => {
+    hideMenu: Function = (): void => {
         this.props.dispatch(hideUserMenu())
     }
 

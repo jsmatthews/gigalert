@@ -4,15 +4,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchAllArtists } from '../../actions/index'
-
 import ArtistList from '../../components/Artists/ArtistList'
-
 import '../../styles/HomePage.css'
+import type { dispatch } from '../../reducers/index'
+import type { Artist } from '../../api/ArtistQueries'
 
-type Props = {
-    artists: Array<{name:string}>,
-    dispatch: Function
-}
+type Props = dispatch & { artists: Array<Artist>; }
 
 class HomePage extends Component<Props> {
 

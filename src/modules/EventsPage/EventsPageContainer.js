@@ -1,27 +1,28 @@
+//@flow
+
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchAllEvents } from '../../actions/index'
 
 import EventsPage from './EventsPage'
+import type { Event } from '../../api/EventQueries'
+import type { dispatch } from '../../reducers/index'
 
-class EventsPageContainer extends Component {
+type Props = { events: Array<Event> } & dispatch;
+
+class EventsPageContainer extends Component<Props> {
     componentDidMount() {
         this.props.dispatch(fetchAllEvents())
     }
-    
+
     render() {
-        return <EventsPage events={this.props.events} />
+        return (this.props.events !== undefined) ? <EventsPage events={this.props.events} /> : null
     }
 }
 
 function mapStateToProps(state) {
     const { events } = state.events;
     return { events };
-}
-
-EventsPageContainer.propTypes = {
-    events: PropTypes.array
 }
 
 export default connect(mapStateToProps)(EventsPageContainer)

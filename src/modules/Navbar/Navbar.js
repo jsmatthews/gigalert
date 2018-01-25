@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
+//@flow
+
+import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { LoginModal, SignupModal, UserMenu, LoginLinks } from './NavbarComponents'
 import SearchContainer from '../Search/SearchContainer'
 
 import '../../styles/Navbar.css'
+import type { User } from '../../api/UserQueries'
 
 const AppLogo = () => <div className='logo'><NavLink to="/">GigAlert</NavLink></div>
 
@@ -24,19 +27,35 @@ const SearchBar = (props) => (
 )
 
 const UserInfo = (props) => (
-    <React.Fragment>
+    <Fragment>
         {(props.isLoggedIn) ? <UserMenu {...props} /> : <LoginLinks {...props} />}
-    </React.Fragment>
+    </Fragment>
 )
 
 const UserModals = ({ displayLoginModal, displaySignupModal, closeModal }) => (
-    <React.Fragment>
+    <Fragment>
         {(displayLoginModal) ? <LoginModal closeModal={closeModal} /> : null}
         {(displaySignupModal) ? <SignupModal closeModal={closeModal} /> : null}
-    </React.Fragment>
+    </Fragment>
 )
 
-export default class Navbar extends Component {
+type Props = {
+    displayLoginModal: boolean;
+    displaySignupModal: boolean;
+    openModal: Function;
+    closeModal: Function;
+    searchBarValue: string;
+    onChange: Function;
+    onKeyUp: Function;
+    displaySearch: boolean;
+    currentUser: User;
+    logOut: Function;
+    toggleUserMenu: Function;
+    userMenuDisplayed: boolean;
+    hideMenu: Function;
+}
+
+export default class Navbar extends Component<Props> {
     render() {
         return (
             <div id="navbar" className="navbar noselect">
