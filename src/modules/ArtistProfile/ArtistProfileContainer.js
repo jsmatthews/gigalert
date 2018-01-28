@@ -2,15 +2,14 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchArtist, fetchArtistEvents } from '../../actions/index'
+import { fetchArtist } from '../../actions/index'
+import { isEmpty } from '../../helpers/ObjectHelpers'
 
 import ArtistProfile from './ArtistProfile'
-import type { Event} from '../../api/EventQueries'
 import type { Artist } from '../../api/ArtistQueries'
 
 type Props = {
-    artistProfile: Artist,
-    artistEvents: Array<Event>,
+    artist: Artist,
     dispatch: Function,
     match: {
         params: {
@@ -23,24 +22,22 @@ class ArtistProfileContainer extends Component<Props> {
 
     componentWillMount() {
         this.props.dispatch(fetchArtist(this.props.match.params.artistId))
-        this.props.dispatch(fetchArtistEvents(this.props.match.params.artistId))
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.match.params.artistId !== this.props.match.params.artistId) {
             this.props.dispatch(fetchArtist(newProps.match.params.artistId))
-            this.props.dispatch(fetchArtistEvents(newProps.match.params.artistId))
         }
     }
 
     render() {
-        return <ArtistProfile {...this.props} />
+        return (!isEmpty(this.props.artist)) ? <ArtistProfile {...this.props} /> : null
     }
 }
 
 const mapStateToProps = (state) => {
-    const { artistProfile, artistEvents } = state.artists;
-    return { artistProfile, artistEvents }
+    const { artist } = state.artists;
+    return { artist }
 }
 
 export default connect(mapStateToProps)(ArtistProfileContainer)

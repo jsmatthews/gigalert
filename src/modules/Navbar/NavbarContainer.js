@@ -3,6 +3,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import type { User } from '../../api/UserQueries'
+
 import {
     displayModal,
     hideModal,
@@ -18,7 +20,19 @@ import {
 import Navbar from './Navbar'
 import type { AppState, dispatch } from '../../reducers/index'
 
-type Props = AppState & dispatch;
+export type NavbarFunctions = {
+    openModal: Function;
+    closeModal: Function;
+    toggleUserMenu: Function;
+    hideMenu: Function;
+    onChange: Function;
+    onKeyUp: Function;
+    logOut: Function;
+}
+
+type Props = AppState & dispatch & NavbarFunctions & {
+    currentUser: User;
+};
 
 class NavbarContainer extends Component<Props> {
     constructor(props) {

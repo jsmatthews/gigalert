@@ -14,16 +14,15 @@ const ArtistEventsHeader = () => (
     </div>
 )
 
-const ArtistEventsTable = ({ artistEvents }) => (
+const ArtistEventsTable = ({ events }) => (
     <div className="artist-events-table">
         <ArtistEventsHeader />
-        <ArtistEvents events={artistEvents} />
+        <ArtistEvents events={events} />
     </div>
 )
 
 const eventDate = (date) => {
     let dateObj = new Date(date)
-
     let month = dateObj.toLocaleString("en-us", { month: "short" });
     let day = String(dateObj.getDate()).padStart(2, "0");
 
@@ -31,7 +30,7 @@ const eventDate = (date) => {
 }
 
 const ArtistEvents = ({ events }) => {
-    let sortedEvents: Array<Event> = [].concat(events).sort((a: Event, b: Event): any => a.date > b.date)
+    let sortedEvents: Event[] = [].concat(events).sort((a: Event, b: Event): any => a.date > b.date)
     return sortedEvents.map(event => <ArtistEvent key={event.id} {...event} />)
 }
 
@@ -61,16 +60,14 @@ const ArtistImage = ({ name }) => (
     </div>
 )
 
-type Props = {artistProfile: Artist; artistEvents: Array<Event> }
+type Props = { artist: Artist; }
 
 export default class ArtistProfile extends Component<Props> {
     render() {
         return (
             <div className='page artist-profile'>
-                {
-                    (this.props.artistProfile) ? <ArtistImage {...this.props.artistProfile} /> : null
-                }
-                <ArtistEventsTable artistEvents={this.props.artistEvents} />
+                <ArtistImage {...this.props.artist} />
+                <ArtistEventsTable {...this.props.artist} />
             </div>
         )
     }

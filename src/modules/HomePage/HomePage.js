@@ -9,7 +9,7 @@ import '../../styles/HomePage.css'
 import type { dispatch } from '../../reducers/index'
 import type { Artist } from '../../api/ArtistQueries'
 
-type Props = dispatch & { artists: Array<Artist>; }
+type Props = dispatch & { artists: Artist[]; }
 
 class HomePage extends Component<Props> {
 

@@ -8,8 +8,10 @@ import SearchContainer from '../Search/SearchContainer'
 
 import '../../styles/Navbar.css'
 import type { User } from '../../api/UserQueries'
+import type { AppState } from '../../reducers/index'
+import type { NavbarFunctions } from './NavbarContainer'
 
-const AppLogo = () => <div className='logo'><NavLink to="/">GigAlert</NavLink></div>
+const AppLogo = () => <div className='logo'><NavLink to="/"></NavLink></div>
 
 const Search = ({ searchBarValue, onChange, onKeyUp, displaySearch }) => (
     <div className='search-container'>
@@ -20,7 +22,7 @@ const Search = ({ searchBarValue, onChange, onKeyUp, displaySearch }) => (
 
 const SearchBar = (props) => (
     <div className='nav-links'>
-        <Search {...props}/>
+        <Search {...props} />
         <NavLink className="nav-btn" to="/artists">Artists</NavLink>
         <NavLink className="nav-btn" to="/events">Events</NavLink>
     </div>
@@ -39,21 +41,12 @@ const UserModals = ({ displayLoginModal, displaySignupModal, closeModal }) => (
     </Fragment>
 )
 
-type Props = {
-    displayLoginModal: boolean;
-    displaySignupModal: boolean;
-    openModal: Function;
-    closeModal: Function;
-    searchBarValue: string;
-    onChange: Function;
-    onKeyUp: Function;
-    displaySearch: boolean;
+
+type Props = AppState & NavbarFunctions & {
     currentUser: User;
-    logOut: Function;
-    toggleUserMenu: Function;
-    userMenuDisplayed: boolean;
-    hideMenu: Function;
 }
+
+
 
 export default class Navbar extends Component<Props> {
     render() {

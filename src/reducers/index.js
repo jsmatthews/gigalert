@@ -13,9 +13,9 @@ type Action = {
     payload: {
         type: string;
         keyword: string;
-        artists: Array<Artist>;
+        artists: Artist[];
         artist: Artist;
-        events: Array<Event>;
+        events: Event[];
         event: Event;
     }
 }
@@ -29,16 +29,15 @@ export type AppState = {
 }
 
 type ArtistState = {
-    artists: Array<Artist>;
-    artistProfile: Artist;
-    artistEvents: Array<Event>;
+    artists: Artist[];
+    artist: Artist;
     artistsError: any;
-    searchedArtists: Array<Event>;
+    searchedArtists: Event[];
 }
 
 type EventState = {
     event: Event;
-    events: Array<Event>;
+    events: Event[];
     eventsError: any;
 }
 
@@ -59,8 +58,7 @@ const defaultApp: AppState = {
 
 const defaultArtists: ArtistState = {
     artists: [],
-    artistProfile: {},
-    artistEvents: [],
+    artist: {},
     artistsError: null,
     searchedArtists: []
 }
@@ -99,12 +97,10 @@ export function appReducer(state: AppState = defaultApp, action: Action) {
 export function artistsReducer(state: ArtistState = defaultArtists, action: Action) {
     switch (action.type) {
         case 'FETCH_ALL_ARTISTS_SUCCEEDED': return { ...state, artists: action.payload.artists }
-        case 'FETCH_ARTIST_SUCCEEDED': return { ...state, artistProfile: action.payload.artist };
-        case 'FETCH_ARTIST_EVENTS_SUCCEEDED': return { ...state, artistEvents: action.payload.events };
+        case 'FETCH_ARTIST_SUCCEEDED': return { ...state, artist: action.payload.artist };
         case 'FETCH_ARTISTS_BY_KEYWORD_SUCCEEDED': return { ...state, searchedArtists: action.payload.artists };
 
         case 'FETCH_ARTIST_FAILED':
-        case 'FETCH_ARTIST_EVENTS_FAILED':
         case 'FETCH_ALL_ARTISTS_FAILED': return { ...state, artistsError: action.payload }
         case 'FETCH_ARTISTS_BY_KEYWORD_FAILED': return { ...state, artistsError: action.payload }
 

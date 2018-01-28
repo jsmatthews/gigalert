@@ -15,7 +15,10 @@ const SearchListRow = ({ id, name, handleSearchClick }) => (
     </div>
 )
 
-type Props = { searchedArtists: Array<Artist>; handleSearchClick: Function; }
+type Props = { 
+    searchedArtists: Artist[];
+    handleSearchClick: Function; 
+}
 
 export default class SearchList extends Component<Props> {
     render() {

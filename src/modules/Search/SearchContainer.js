@@ -8,7 +8,7 @@ import { hideSearch, clearSearchBarValue, clearSearchedArtists } from '../../act
 import type { dispatch } from '../../reducers/index'
 import type { Artist } from '../../api/ArtistQueries'
 
-type Props = dispatch & { searchedArtists: Array<Artist> };
+type Props = dispatch & { searchedArtists: Artist[] };
 
 class SearchContainer extends Component<Props> {
     constructor(props) {

@@ -19,3 +19,14 @@ query fetchEvents($id: Int, $title: String, $location: String, $artistId:Int, $d
         date
     }
 }`
+
+export const fetchEventQuery = gql`
+query fetchEvent($id: Int, $title: String, $location: String, $artistId:Int, $date: String){
+    event(id: $id, title: $title, location: $location, artistId: $artistId, date: $date) {
+        id
+        title
+        location
+        artistId
+        date
+    }
+}`

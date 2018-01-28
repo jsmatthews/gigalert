@@ -8,7 +8,7 @@ import EventsPage from './EventsPage'
 import type { Event } from '../../api/EventQueries'
 import type { dispatch } from '../../reducers/index'
 
-type Props = { events: Array<Event> } & dispatch;
+type Props = { events: Event[] } & dispatch;
 
 class EventsPageContainer extends Component<Props> {
     componentDidMount() {

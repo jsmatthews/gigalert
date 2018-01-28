@@ -8,7 +8,7 @@ const EventItem = ({ id, title, location, date }: Event) => (
         {id} - {title} - {location} - {date}
     </div>
 )
-type Props = Event & { events: Array<Event> }
+type Props = Event & { events: Event[] }
 export default class EventsPage extends Component<Props> {
     render() {
         return (this.props.events !== null) ? this.props.events.map(event => <EventItem key={event.id} {...event} />) : null

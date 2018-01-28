@@ -11,7 +11,9 @@ import DropdownMenu from '../../components/DropdownMenu'
 import { login_modal_type, signup_modal_type, user_menu_dropdown_modal_type } from '../../constants'
 import type { User } from '../../api/UserQueries'
 
-type LoginModalTypes = { closeModal: Function }
+type LoginModalTypes = { 
+    closeModal: Function 
+}
 export const LoginModal = ({ closeModal }: LoginModalTypes) => (
     <Modal closeModal={closeModal} type={login_modal_type}>
         <ModalHeader title="Log In" />
@@ -19,7 +21,10 @@ export const LoginModal = ({ closeModal }: LoginModalTypes) => (
     </Modal>
 )
 
-type SignupModalTypes = { closeModal: Function }
+type SignupModalTypes = { 
+    closeModal: Function 
+}
+
 export const SignupModal = ({ closeModal }: SignupModalTypes) => (
     <Modal closeModal={closeModal} type={signup_modal_type}>
         <ModalHeader title="Sign Up" />
@@ -41,7 +46,9 @@ export const UserMenu = ({ currentUser, logOut, toggleUserMenu, userMenuDisplaye
     </Fragment>
 )
 
-type LoginLinksTypes = { openModal: Function }
+type LoginLinksTypes = { 
+    openModal: Function 
+}
 export const LoginLinks = ({ openModal }: LoginLinksTypes) => (
     <div className='login-links'>
         <LoginLink label="Log In" openModal={openModal} type={login_modal_type} />

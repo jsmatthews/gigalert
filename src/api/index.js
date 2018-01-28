@@ -5,8 +5,8 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { usersQuery, signUpUserMutation } from './UserQueries'
-import { artistsQuery } from './ArtistQueries'
-import { eventsQuery } from './EventQueries'
+import { artistsQuery, fetchArtistQuery } from './ArtistQueries'
+import { eventsQuery, fetchEventQuery } from './EventQueries'
 
 export const ac = new ApolloClient({
     link: new HttpLink({ uri: "http://localhost:1337/graphql/", }),
@@ -16,12 +16,11 @@ export const ac = new ApolloClient({
 // Artists
 export const fetchAllArtists = () => (ac.query({ query: artistsQuery, variables: { detailed: false } }))
 export const fetchAllEvents = () => (ac.query({ query: eventsQuery, variables: {} }))
-export const fetchArtist = (id: number) => (ac.query({ query: artistsQuery, variables: { id, detailed: true } }))
+export const fetchArtist = (id: number) => (ac.query({ query: fetchArtistQuery, variables: { id } }))
 export const fetchArtistsByKeyword = (name: string) => (ac.query({ query: artistsQuery, variables: { name, detailed: false } }))
 
 // Events
-export const fetchArtistEvents = (artistId: number) => (ac.query({ query: eventsQuery, variables: { artistId } }))
-export const fetchEvent = (id: number) => (ac.query({ query: eventsQuery, variables: { id } }))
+export const fetchEvent = (id: number) => (ac.query({ query: fetchEventQuery, variables: { id } }))
 
 // Users
 export const signUpUser = ({ email, password }: { email: string, password: string }) => (ac.mutate({ mutation: signUpUserMutation, variables: { email, password } }))

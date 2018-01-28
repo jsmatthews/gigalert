@@ -6,7 +6,7 @@ import '../../styles/Artists.css'
 
 import type { Artist } from '../../api/ArtistQueries'
 
-type Props = { artists: Array<Artist> }
+type Props = { artists: Artist[] }
 
 class ArtistsPageContainer extends Component<Props> {
     componentDidMount() {
