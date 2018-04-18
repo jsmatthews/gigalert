@@ -1,45 +1,57 @@
+//@flow
 import React, { Component } from 'react'
-import { createPortal } from 'react-dom';
+import { createPortal } from 'react-dom'
 
-const modalRoot = document.body;
+const modalRoot = document.body
 
-export const ModalHeader = ({ title }) => (
-    <div className="modal-header">
-        {title}
-    </div>
+type ModalHeaderProps = {
+	title: String
+}
+export const ModalHeader = ({ title }: ModalHeaderProps) => (
+	<div className='modal-header'>
+		{title}
+	</div>
 )
 
-export class Modal extends Component {
-    constructor(props){
-        super(props);
-        this.modalContainer = document.createElement('div');
-        this.modalContainer.className = props.modalContainerStyle || "modal-container";
+type ModalProps = {
+	modalContainerStyle: String,
+	modalBackgroundStyle: String,
+	modalStyle: String,
+	closeModal: Function,
+	type: String,
+	children: Any
+}
+export class Modal extends Component<ModalProps> {
+	constructor(props) {
+		super(props)
+		this.modalContainer = document.createElement('div')
+		this.modalContainer.className = props.modalContainerStyle || 'modal-container'
 
-        this.backgroundEl = document.createElement('div');
-        this.backgroundEl.className = props.modalBackgroundStyle || "modal-background";
+		this.backgroundEl = document.createElement('div')
+		this.backgroundEl.className = props.modalBackgroundStyle || 'modal-background'
 
-        this.modalEl = document.createElement('div');
-        this.modalEl.className = props.modalStyle || "modal";
-    }
+		this.modalEl = document.createElement('div')
+		this.modalEl.className = props.modalStyle || 'modal'
+	}
 
-    componentDidMount(){
-        this.backgroundEl.addEventListener("click", () => this.props.closeModal(this.props.type));
-        this.modalContainer.appendChild(this.backgroundEl);
-        this.modalContainer.appendChild(this.modalEl);
+	componentDidMount() {
+		this.backgroundEl.addEventListener('click', () => this.props.closeModal(this.props.type))
+		this.modalContainer.appendChild(this.backgroundEl)
+		this.modalContainer.appendChild(this.modalEl)
 
-        modalRoot.addEventListener("keyup", (e) => {
-            if(e.keyCode !== 27) return;
-            this.props.closeModal(this.props.type);
-        })
+		modalRoot.addEventListener('keyup', (e) => {
+			if (e.keyCode !== 27) return
+			this.props.closeModal(this.props.type)
+		})
 
-        modalRoot.appendChild(this.modalContainer);
-    }
+		modalRoot.appendChild(this.modalContainer)
+	}
 
-    componentWillUnmount(){
-        modalRoot.removeChild(this.modalContainer);
-    }
+	componentWillUnmount() {
+		modalRoot.removeChild(this.modalContainer)
+	}
 
-    render(){
-        return createPortal(this.props.children, this.modalEl);
-    }
+	render() {
+		return createPortal(this.props.children, this.modalEl)
+	}
 }

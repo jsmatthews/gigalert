@@ -1,9 +1,10 @@
-import gql from 'graphql-tag';
+//@flow
+import gql from 'graphql-tag'
 
 export type User = {
-    id: number;
-    name: string;
-    email: string;
+	id: number;
+	name: string;
+	email: string;
 }
 
 // Return found users with all attributes
@@ -17,7 +18,7 @@ query fetchUsers($id: Int, $name: String, $email: String, $password: String){
 }`
 
 export type SignedUpUser = {
-    email: string;
+	email: string;
 }
 export const signUpUserMutation = gql`
 mutation signUpUser($email: String, $password: String){

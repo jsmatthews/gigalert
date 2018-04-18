@@ -1,17 +1,15 @@
 //@flow
-
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 import { usersQuery, signUpUserMutation } from './UserQueries'
 import { artistsQuery } from './ArtistQueries'
 import { eventsQuery } from './EventQueries'
 
 export const ac = new ApolloClient({
-    link: new HttpLink({ uri: "http://localhost:1337/graphql/", }),
-    cache: new InMemoryCache()
-});
+	link: new HttpLink({ uri: 'http://localhost:1337/graphql/', }),
+	cache: new InMemoryCache()
+})
 
 // Artists
 export const fetchAllArtists = () => (ac.query({ query: artistsQuery, variables: { detailed: false } }))

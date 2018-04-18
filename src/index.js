@@ -1,6 +1,6 @@
-import registerServiceWorker from './registerServiceWorker';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import registerServiceWorker from './registerServiceWorker'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
@@ -9,40 +9,40 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import rootSaga from './sagas/sagas'
 
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from 'react-apollo'
 import { ac } from './api/index'
 
 import { appReducer, artistsReducer, eventsReducer, usersReducer } from './reducers/index'
 
-import './styles/index.css';
-import App from './containers/App';
+import './styles/index.css'
+import App from './containers/App'
 
 const reducers = {
-    app: appReducer,
-    artists: artistsReducer,
-    events: eventsReducer,
-    users: usersReducer
-};
+	app: appReducer,
+	artists: artistsReducer,
+	events: eventsReducer,
+	users: usersReducer
+}
 
-const rootReducer = combineReducers(reducers);
-const sagaMiddleware = createSagaMiddleware();
+const rootReducer = combineReducers(reducers)
+const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(rootReducer,
-    composeWithDevTools(applyMiddleware(sagaMiddleware, thunk))
+	composeWithDevTools(applyMiddleware(sagaMiddleware, thunk))
 )
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga)
 
 ReactDOM.render(
-    <Provider store={store} >
-        <ApolloProvider store={store} client={ac}>
-            <BrowserRouter>
-                <Route path="/" component={App} />
-            </BrowserRouter>
-        </ApolloProvider>
-    </Provider>
-    , document.getElementById('root')
-);
+	<Provider store={store} >
+		<ApolloProvider store={store} client={ac}>
+			<BrowserRouter>
+				<Route path='/' component={App} />
+			</BrowserRouter>
+		</ApolloProvider>
+	</Provider>
+	, document.getElementById('root')
+)
 
-registerServiceWorker();
+registerServiceWorker()
 
