@@ -1,6 +1,5 @@
 import { call, all, put, takeEvery } from 'redux-saga/effects'
 import * as api from '../api/index'
-
 import { login_modal_type, signup_modal_type } from '../constants'
 
 // Users

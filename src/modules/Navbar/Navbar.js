@@ -5,8 +5,10 @@ import { LoginModal, SignupModal, UserMenu, LoginLinks } from './NavbarComponent
 import SearchContainer from '../Search/SearchContainer'
 import '../../styles/Navbar.css'
 import type { User } from '../../api/UserQueries'
+import type { AppState } from '../../reducers/index'
+import type { NavbarFunctions } from './NavbarContainer'
 
-const AppLogo = () => <div className='logo'><NavLink to="/">GigAlert</NavLink></div>
+const AppLogo = () => <div className='logo'><NavLink to="/"></NavLink></div>
 
 type SearchProps = {
 	searchBarValue: Any,

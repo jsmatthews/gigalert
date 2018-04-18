@@ -2,9 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchArtist, fetchArtistEvents } from '../../actions/index'
-
 import { getArtistSelector } from '../../selectors'
-
 import ArtistProfile from './ArtistProfile'
 import type { Event } from '../../api/EventQueries'
 import type { Artist } from '../../api/ArtistQueries'
@@ -19,7 +17,6 @@ type Props = {
 		}
 	}
 }
-
 class ArtistProfileContainer extends Component<Props> {
 
 	componentWillMount() {

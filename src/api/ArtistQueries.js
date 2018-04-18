@@ -17,6 +17,22 @@ query fetchArtists($id: Int, $name: String, $description: String, $detailed: Boo
     }
 }`
 
+// Return single artist including artist events
+export const fetchArtistQuery = gql`
+query fetchArtist($id: Int){
+    artist(id: $id) {
+        id
+        name
+        description
+        events {
+            id
+            title
+            location
+            date
+        }
+    }
+}`
+
 export type CreatedArtist = {
 	id: number;
 	name: string;

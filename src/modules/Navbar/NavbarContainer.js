@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getNavbarSelector } from '../../selectors'
 
+import type { User } from '../../api/UserQueries'
+
 import {
 	displayModal,
 	hideModal,

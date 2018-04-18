@@ -5,7 +5,6 @@ type Action = { type: string; }
 type ArtistAction = Action & { payload: { artistId: number; }; }
 export const fetchAllArtists = (): Action => ({ type: 'FETCH_ALL_ARTISTS_REQUESTED' })
 export const fetchArtist = (artistId: number): ArtistAction => ({ type: 'FETCH_ARTIST_REQUESTED', payload: { artistId } })
-export const fetchArtistEvents = (artistId: number): ArtistAction => ({ type: 'FETCH_ARTIST_EVENTS_REQUESTED', payload: { artistId } })
 
 // Event Actions
 type EventAction = Action & { payload: { id: number; }; }
