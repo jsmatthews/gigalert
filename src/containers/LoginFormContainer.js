@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { loginUser } from '../actions/index'
 import LoginForm from '../components/Forms/LoginForm'
 
@@ -16,7 +18,7 @@ class LoginFormContainer extends Component {
 		// if (this.state.email === '' || this.state.password === '') {
 		//     return
 		// }
-		this.props.dispatch(loginUser(this.state))
+		this.props.loginUser(this.state)
 	}
 
 	handleInputChange(e) {
@@ -32,8 +34,14 @@ class LoginFormContainer extends Component {
 	}
 }
 
+LoginFormContainer.propTypes = {
+	loginUser: PropTypes.func
+}
+
 const mapDispatchToProps = dispatch => {
-	return dispatch
+	return bindActionCreators({
+		loginUser
+	}, dispatch)
 }
 
 export default connect(mapDispatchToProps)(LoginFormContainer)

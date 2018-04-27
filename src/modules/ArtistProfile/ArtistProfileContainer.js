@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { connect, } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { fetchArtist, fetchArtistEvents } from '../../actions/index'
 import { getArtistSelector } from '../../selectors'
 import ArtistProfile from './ArtistProfile'
 
 class ArtistProfileContainer extends Component {
 	componentWillMount() {
-		this.props.dispatch(fetchArtist(this.props.match.params.artistId))
-		this.props.dispatch(fetchArtistEvents(this.props.match.params.artistId))
+		this.props.fetchArtist(this.props.match.params.artistId)
+		this.props.fetchArtistEvents(this.props.match.params.artistId)
 	}
 
 	componentWillReceiveProps(newProps) {
 		if (newProps.match.params.artistId !== this.props.match.params.artistId) {
-			this.props.dispatch(fetchArtist(newProps.match.params.artistId))
-			this.props.dispatch(fetchArtistEvents(newProps.match.params.artistId))
+			this.props.fetchArtist(newProps.match.params.artistId)
+			this.props.fetchArtistEvents(newProps.match.params.artistId)
 		}
 	}
 
@@ -22,6 +24,20 @@ class ArtistProfileContainer extends Component {
 	}
 }
 
+ArtistProfileContainer.propTypes = {
+	dispatch: PropTypes.function,
+	fetchArtist: PropTypes.function,
+	fetchArtistEvents: PropTypes.function,
+	match: PropTypes.object
+}
+
 const mapStateToProps = getArtistSelector
 
-export default connect(mapStateToProps)(ArtistProfileContainer)
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({
+		fetchArtist,
+		fetchArtistEvents
+	}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArtistProfileContainer)

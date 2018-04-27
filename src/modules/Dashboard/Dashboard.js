@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Route, NavLink } from 'react-router-dom'
 import '../../styles/Dashboard.css'
 import AccountSettings from './AccountSettings'
@@ -8,6 +9,12 @@ const DashboardNavItem = ({ label, to, order }) => (
 		<NavLink className="dashboard-nav-btn" activeClassName="dashboard-nav-active" to={to}>{label}</NavLink>
 	</div>
 )
+
+DashboardNavItem.propTypes = {
+	label: PropTypes.string,
+	to: PropTypes.string,
+	order: PropTypes.number
+}
 
 const DashboardNav = () => (
 	<div className="dashboard-nav">

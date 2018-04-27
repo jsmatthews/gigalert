@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Form, SubmitButton, FormTextInput, FormPasswordInput } from './FormItems'
 
 export default class LoginForm extends Component {
@@ -11,4 +12,11 @@ export default class LoginForm extends Component {
 			</Form>
 		)
 	}
+}
+
+LoginForm.propTypes = {
+	handleSubmit: PropTypes.func,
+	handleInputChange: PropTypes.func,
+	email: PropTypes.string,
+	password: PropTypes.string
 }

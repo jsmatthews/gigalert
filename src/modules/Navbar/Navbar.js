@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import { LoginModal, SignupModal, UserMenu, LoginLinks } from './NavbarComponents'
 import SearchContainer from '../Search/SearchContainer'
@@ -12,6 +13,12 @@ const Search = ({ searchBarValue, onChange, onKeyUp, displaySearch }) => (
 		{(displaySearch) ? <SearchContainer /> : null}
 	</div>
 )
+Search.propTypes = {
+	searchBarValue: PropTypes.string,
+	onChange: PropTypes.func,
+	onKeyUp: PropTypes.func,
+	displaySearch: PropTypes.func
+}
 
 const SearchBar = (props) => (
 	<div className='nav-links'>
@@ -27,12 +34,22 @@ const UserInfo = ({ isLoggedIn, ...props }) => (
 	</Fragment>
 )
 
+UserInfo.propTypes = {
+	isLoggedIn: PropTypes.bool
+}
+
 const UserModals = ({ displayLoginModal, displaySignupModal, closeModal }) => (
 	<Fragment>
 		{(displayLoginModal) ? <LoginModal closeModal={closeModal} /> : null}
 		{(displaySignupModal) ? <SignupModal closeModal={closeModal} /> : null}
 	</Fragment>
 )
+
+UserModals.propTypes = {
+	displayLoginModal: PropTypes.bool,
+	displaySignupModal: PropTypes.bool,
+	closeModal: PropTypes.func
+}
 
 export default class Navbar extends Component {
 	render() {

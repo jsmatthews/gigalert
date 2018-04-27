@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { signUpUser } from '../actions/index'
 import SignupForm from '../components/Forms/SignupForm'
 
@@ -17,7 +19,7 @@ class SignUpFormContainer extends Component {
 			return
 		}
 
-		this.props.dispatch(signUpUser(this.state))
+		this.props.signUpUser(this.state)
 	}
 
 	handleInputChange(e) {
@@ -33,6 +35,13 @@ class SignUpFormContainer extends Component {
 	}
 }
 
-const mapDispatchToProps = dispatch => dispatch
+SignUpFormContainer.propTypes = {
+	signUpUser: PropTypes.func
+}
 
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({
+		signUpUser
+	}, dispatch)
+}
 export default connect(null, mapDispatchToProps)(SignUpFormContainer)

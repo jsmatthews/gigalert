@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Modal, ModalHeader } from '../../components/Modal'
 import LoginFormContainer from '../../containers/LoginFormContainer'
@@ -13,12 +14,20 @@ export const LoginModal = ({ closeModal }) => (
 	</Modal>
 )
 
+LoginModal.propTypes = {
+	closeModal: PropTypes.func
+}
+
 export const SignupModal = ({ closeModal }) => (
 	<Modal closeModal={closeModal} type={signup_modal_type}>
 		<ModalHeader title="Sign Up" />
 		<SignUpFormContainer />
 	</Modal>
 )
+
+SignupModal.propTypes = {
+	closeModal: PropTypes.func
+}
 
 export const UserMenu = ({ currentUser, logOut, toggleUserMenu, userMenuDisplayed, hideMenu }) => (
 	<Fragment>
@@ -27,12 +36,24 @@ export const UserMenu = ({ currentUser, logOut, toggleUserMenu, userMenuDisplaye
 	</Fragment>
 )
 
+UserMenu.propTypes = {
+	currentUser: PropTypes.func,
+	logOut: PropTypes.func,
+	toggleUserMenu: PropTypes.func,
+	userMenuDisplayed: PropTypes.bool,
+	hideMenu: PropTypes.func,
+}
+
 export const LoginLinks = ({ openModal }) => (
 	<div className='login-links'>
 		<LoginLink label="Log In" openModal={openModal} type={login_modal_type} />
 		<LoginLink label="Sign Up" openModal={openModal} type={signup_modal_type} />
 	</div>
 )
+
+LoginLinks.propTypes = {
+	openModal: PropTypes.func
+}
 
 const UserMenuDropdownItem = ({ id, icon, label }) => (
 	<div className="user-menu-dropdown-item">
@@ -41,23 +62,30 @@ const UserMenuDropdownItem = ({ id, icon, label }) => (
 	</div>
 )
 
+UserMenuDropdownItem.propTypes = {
+	id: PropTypes.string,
+	icon: PropTypes.string,
+	label: PropTypes.string
+}
+
 const UserMenuDropdown = ({ logOut, hideMenu }) => (
 	<DropdownMenu dropdownMenuRoot="userIcon" hideMenu={hideMenu}>
-
 		<Link to='/dashboard' >
 			<UserMenuDropdownItem id="dashboardLink" icon="rocket" label="Dashboard" />
 		</Link>
-
 		<Link to='/dashboard/accountSettings' >
 			<UserMenuDropdownItem id="accountSettingsLink" icon="cog" label="Settings" />
 		</Link>
-
 		<div onClick={(e) => logOut(e)}>
 			<UserMenuDropdownItem id="logOutLink" icon="sign-out" label="Log Out" />
 		</div>
-
 	</DropdownMenu>
 )
+
+UserMenuDropdown.propTypes = {
+	logOut: PropTypes.func,
+	hideMenu: PropTypes.func
+}
 
 const UserIcon = ({ toggleUserMenu, email }) => (
 	<div id="userIcon" className="user-icon">
@@ -65,8 +93,19 @@ const UserIcon = ({ toggleUserMenu, email }) => (
 	</div>
 )
 
+UserIcon.propTypes = {
+	toggleUserMenu: PropTypes.func,
+	email: PropTypes.string
+}
+
 const LoginLink = ({ label, openModal, type }) => (
 	<div className="login-link" onClick={() => openModal(type)}>
 		{label}
 	</div>
 )
+
+LoginLink.propTypes = {
+	label: PropTypes.string,
+	openModal: PropTypes.func,
+	type: PropTypes.string
+}

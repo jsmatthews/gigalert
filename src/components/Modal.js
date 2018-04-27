@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 
 const modalRoot = document.body
@@ -8,6 +9,10 @@ export const ModalHeader = ({ title }) => (
 		{title}
 	</div>
 )
+
+ModalHeader.propTypes = {
+	title: PropTypes.string
+}
 
 export class Modal extends Component {
 	constructor(props) {
@@ -42,4 +47,13 @@ export class Modal extends Component {
 	render() {
 		return createPortal(this.props.children, this.modalEl)
 	}
+}
+
+Modal.propTypes = {
+	modalContainerStyle: PropTypes.string,
+	modalBackgroundStyle: PropTypes.string,
+	modalStyle: PropTypes.string,
+	type: PropTypes.string,
+	children: PropTypes.array,
+	closeModal: PropTypes.func
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import SearchList from './SearchList'
 import { hideSearch, clearSearchBarValue, clearSearchedArtists } from '../../actions/index'
 import { getSearchedArtistsSelector } from '../../selectors'
@@ -11,9 +13,9 @@ class SearchContainer extends Component {
 	}
 
 	handleSearchClick = () => {
-		this.props.dispatch(hideSearch())
-		this.props.dispatch(clearSearchBarValue())
-		this.props.dispatch(clearSearchedArtists())
+		this.props.hideSearch()
+		this.props.clearSearchBarValue()
+		this.props.clearSearchedArtists()
 	}
 
 	render() {
@@ -21,6 +23,19 @@ class SearchContainer extends Component {
 	}
 }
 
-const mapStateToProps = getSearchedArtistsSelector
+SearchContainer.propTypes = {
+	clearSearchedArtists: PropTypes.func,
+	clearSearchBarValue: PropTypes.func,
+	hideSearch: PropTypes.func
+}
 
-export default connect(mapStateToProps)(SearchContainer)
+const mapStateToProps = getSearchedArtistsSelector
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({
+		clearSearchedArtists,
+		clearSearchBarValue,
+		hideSearch
+	}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)

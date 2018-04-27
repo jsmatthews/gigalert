@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-export default class EventPage extends Component {
+class EventPage extends Component {
 	render() {
 		return (
 			<div className=''>
@@ -9,3 +10,9 @@ export default class EventPage extends Component {
 		)
 	}
 }
+
+EventPage.propTypes = {
+	event: PropTypes.object
+}
+
+export default EventPage

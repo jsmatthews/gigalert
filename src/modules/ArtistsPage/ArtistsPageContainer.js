@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchAllArtists } from '../../actions/index'
+import { bindActionCreators } from 'redux'
 import ArtistList from '../../components/Artists/ArtistList'
 import '../../styles/Artists.css'
 import { getArtistsSelector } from '../../selectors'
+import { fetchAllArtists } from '../../actions/index'
 
 class ArtistsPageContainer extends Component {
 	componentDidMount() {
-		this.props.dispatch(fetchAllArtists())
+		this.props.fetchAllArtists()
 	}
 
 	render() {
@@ -18,10 +19,14 @@ class ArtistsPageContainer extends Component {
 
 ArtistsPageContainer.propTypes = {
 	artists: PropTypes.array,
-	dispatch: PropTypes.func
+	fetchAllArtists: PropTypes.func
 }
 
 const mapStateToProps = getArtistsSelector
-const mapDispatchToProps = dispatch => dispatch
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({
+		fetchAllArtists
+	}, dispatch)
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtistsPageContainer)

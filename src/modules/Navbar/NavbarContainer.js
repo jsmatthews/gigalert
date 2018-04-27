@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { getNavbarSelector } from '../../selectors'
 import {
 	displayModal,
@@ -28,29 +30,29 @@ class NavbarContainer extends Component {
 	}
 
 	handleSearchBarInput(e) {
-		this.props.dispatch(updateSearchBarValue(e.target.value))
+		this.props.updateSearchBarValue(e.target.value)
 	}
 
 	handleSearchBarKeyUp(e) {
 		switch (e.keyCode) {
 			case 27: {
-				this.props.dispatch(clearSearchBarValue())
-				this.props.dispatch(hideSearch())
+				this.props.clearSearchBarValue()
+				this.props.hideSearch()
 				break
 			}
 			case 13: {
 				if (typeof this.props.searchBarValue !== 'string') return
-				this.props.dispatch(searchDatabase(this.props.searchBarValue))
+				this.props.searchDatabase(this.props.searchBarValue)
 				break
 			}
 			default: {
-				this.props.dispatch(searchDatabase(this.props.searchBarValue))
+				this.props.searchDatabase(this.props.searchBarValue)
 				if (this.props.searchBarValue.length === 1) {
-					this.props.dispatch(displaySearch())
+					this.props.displaySearch()
 					break
 				}
 				if (this.props.searchBarValue.length === 0) {
-					this.props.dispatch(hideSearch())
+					this.props.hideSearch()
 					break
 				}
 			}
@@ -58,23 +60,23 @@ class NavbarContainer extends Component {
 	}
 
 	openModal(type) {
-		this.props.dispatch(displayModal(type))
+		this.props.displayModal(type)
 	}
 
 	closeModal(type) {
-		this.props.dispatch(hideModal(type))
+		this.props.hideModal(type)
 	}
 
 	toggleUserMenu() {
 		if (this.props.userMenuDisplayed) {
-			this.props.dispatch(hideUserMenu())
+			this.props.hideUserMenu()
 		} else {
-			this.props.dispatch(displayUserMenu())
+			this.props.displayUserMenu()
 		}
 	}
 
 	hideMenu() {
-		this.props.dispatch(hideUserMenu())
+		this.props.hideUserMenu()
 	}
 
 	render() {
@@ -88,6 +90,33 @@ class NavbarContainer extends Component {
 	}
 }
 
-const mapStateToProps = getNavbarSelector
+NavbarContainer.propTypes = {
+	displayModal: PropTypes.func,
+	hideModal: PropTypes.func,
+	displayUserMenu: PropTypes.func,
+	hideUserMenu: PropTypes.func,
+	updateSearchBarValue: PropTypes.func,
+	clearSearchBarValue: PropTypes.func,
+	searchDatabase: PropTypes.func,
+	displaySearch: PropTypes.func,
+	hideSearch: PropTypes.func,
+	userMenuDisplayed: PropTypes.bool,
+	searchBarValue: PropTypes.string
+}
 
-export default connect(mapStateToProps)(NavbarContainer)
+const mapStateToProps = getNavbarSelector
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({
+		displayModal,
+		hideModal,
+		displayUserMenu,
+		hideUserMenu,
+		updateSearchBarValue,
+		clearSearchBarValue,
+		searchDatabase,
+		displaySearch,
+		hideSearch
+	}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer)

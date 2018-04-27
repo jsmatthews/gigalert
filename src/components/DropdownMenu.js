@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 import { findChild } from '../helpers/ObjectHelpers'
 
@@ -55,4 +56,10 @@ export default class DropdownMenu extends Component {
 	render() {
 		return createPortal(this.props.children, this.dropdownEl)
 	}
+}
+
+DropdownMenu.propTypes = {
+	dropdownMenuRoot: PropTypes.string,
+	hideMenu: PropTypes.func,
+	children: PropTypes.array
 }

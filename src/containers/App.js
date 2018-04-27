@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-
+import { bindActionCreators } from 'redux'
 import { getUsersSelector } from '../selectors'
 
+// Components
 import NavbarContainer from '../modules/Navbar/NavbarContainer'
 import HomePage from '../modules/HomePage/HomePage'
 import ArtistsPageContainer from '../modules/ArtistsPage/ArtistsPageContainer'
@@ -25,7 +26,7 @@ class App extends Component {
 	}
 
 	componentWillMount() {
-		this.props.dispatch(verifyUser(1))
+		this.props.verifyUser(1)
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -34,8 +35,8 @@ class App extends Component {
 
 	logOut(e) {
 		e.preventDefault()
-		this.props.dispatch(logOutUser(this.props.currentUser.id))
-		this.props.dispatch(hideUserMenu())
+		this.props.logOutUser(this.props.currentUser.id)
+		this.props.hideUserMenu()
 	}
 
 	render() {
@@ -61,7 +62,18 @@ const mapStateToProps = getUsersSelector
 App.propTypes = {
 	isLoggedIn: PropTypes.bool,
 	currentUser: PropTypes.object,
-	isReady: PropTypes.bool
+	isReady: PropTypes.bool,
+	verifyUser: PropTypes.func,
+	logOutUser: PropTypes.func,
+	hideUserMenu: PropTypes.func
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({
+		verifyUser,
+		logOutUser,
+		hideUserMenu
+	}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import '../../styles/ArtistProfile.css'
 
@@ -14,6 +15,10 @@ const ArtistEventsTable = ({ artistEvents }) => (
 		<ArtistEvents events={artistEvents} />
 	</div>
 )
+
+ArtistEventsTable.propTypes = {
+	artistEvents: PropTypes.array
+}
 
 const eventDate = (date) => {
 	let dateObj = new Date(date)
@@ -47,6 +52,13 @@ const ArtistEvent = ({ id, title, location, date }) => (
 	</Link>
 )
 
+ArtistEvent.propTypes = {
+	id: PropTypes.string,
+	title: PropTypes.string,
+	location: PropTypes.string,
+	date: PropTypes.string
+}
+
 const ArtistImage = ({ name }) => (
 	<div className='artist-image'>
 		<div className='artist-name'>
@@ -55,7 +67,11 @@ const ArtistImage = ({ name }) => (
 	</div>
 )
 
-export default class ArtistProfile extends Component {
+ArtistImage.propTypes = {
+	name: PropTypes.string
+}
+
+class ArtistProfile extends Component {
 	render() {
 		return (
 			<div className='page artist-profile'>
@@ -67,3 +83,11 @@ export default class ArtistProfile extends Component {
 		)
 	}
 }
+
+ArtistProfile.propTypes = {
+	artistEvents: PropTypes.array,
+	artistProfile: PropTypes.object,
+	name: PropTypes.string
+}
+
+export default ArtistProfile

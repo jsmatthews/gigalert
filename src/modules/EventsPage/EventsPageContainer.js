@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { fetchAllEvents } from '../../actions/index'
 import EventsPage from './EventsPage'
 import { getEventsSelector } from '../../selectors'
 
 class EventsPageContainer extends Component {
 	componentDidMount() {
-		this.props.dispatch(fetchAllEvents())
+		this.props.fetchAllEvents()
 	}
 
 	render() {
@@ -14,6 +16,16 @@ class EventsPageContainer extends Component {
 	}
 }
 
-const mapStateToProps = getEventsSelector
+EventsPageContainer.propTypes = {
+	events: PropTypes.array,
+	fetchAllEvents: PropTypes.func
+}
 
-export default connect(mapStateToProps)(EventsPageContainer)
+const mapStateToProps = getEventsSelector
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators({
+		fetchAllEvents
+	}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventsPageContainer)

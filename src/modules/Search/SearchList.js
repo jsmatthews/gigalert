@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import '../../styles/Search.css'
 
@@ -12,7 +13,13 @@ const SearchListRow = ({ id, name, handleSearchClick }) => (
 	</div>
 )
 
-export default class SearchList extends Component {
+SearchListRow.propTypes = {
+	id: PropTypes.string,
+	name: PropTypes.string,
+	handleSearchClick: PropTypes.func
+}
+
+class SearchList extends Component {
 	render() {
 		return (
 			<div className='search-list'>
@@ -21,3 +28,10 @@ export default class SearchList extends Component {
 		)
 	}
 }
+
+SearchList.propTypes = {
+	searchedArtists: PropTypes.array,
+	handleSearchClick: PropTypes.func
+}
+
+export default SearchList
