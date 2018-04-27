@@ -1,20 +1,11 @@
-//@flow
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchUser, hideUserMenu } from '../../actions/index'
 import { Dashboard } from './Dashboard'
-import type { dispatch } from '../../reducers/index'
-import type { User } from '../../api/UserQueries'
 import { getDashboardSelector } from '../../selectors'
 
-type Props = {
-	currentUser: User;
-	isLoggedIn: boolean;
-	userMenuDisplayed: boolean;
-} & dispatch;
-
-class DashboardContainer extends Component<Props> {
+class DashboardContainer extends Component {
 	componentWillMount() {
 		this.props.dispatch(fetchUser(this.props.currentUser.id))
 

@@ -1,10 +1,9 @@
-//@flow
 import { createSelector } from 'reselect'
 
-const getApp = state => state.app
-const getUsers = state => state.users
-const getEvents = state => state.events
-const getArtists = state => state.artists
+const getApp = (state) => state.app
+const getUsers = (state) => state.users
+const getEvents = (state) => state.events
+const getArtists = (state) => state.artists
 
 export const getUsersSelector = createSelector(
 	[getUsers],

@@ -1,24 +1,10 @@
-//@flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchArtist, fetchArtistEvents } from '../../actions/index'
 import { getArtistSelector } from '../../selectors'
 import ArtistProfile from './ArtistProfile'
-import type { Event } from '../../api/EventQueries'
-import type { Artist } from '../../api/ArtistQueries'
 
-type Props = {
-	artistProfile: Artist,
-	artistEvents: Array<Event>,
-	dispatch: Function,
-	match: {
-		params: {
-			artistId: number
-		}
-	}
-}
-class ArtistProfileContainer extends Component<Props> {
-
+class ArtistProfileContainer extends Component {
 	componentWillMount() {
 		this.props.dispatch(fetchArtist(this.props.match.params.artistId))
 		this.props.dispatch(fetchArtistEvents(this.props.match.params.artistId))

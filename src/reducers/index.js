@@ -1,54 +1,4 @@
-//@flow
-import type { Artist } from '../api/ArtistQueries'
-import type { Event } from '../api/EventQueries'
-import type { User } from '../api/UserQueries'
-
-export type dispatch = {
-	dispatch: Function
-}
-
-type Action = {
-	type: String,
-	payload: {
-		type: String,
-		keyword: String,
-		artists: Array<Artist>,
-		artist: Artist,
-		events: Array<Event>,
-		event: Event
-	}
-}
-
-export type AppState = {
-	searchBarValue: string,
-	displaySearch: boolean,
-	displayLoginModal: boolean,
-	displaySignupModal: boolean,
-	userMenuDisplayed: boolean,
-}
-
-type ArtistState = {
-	artists: Array<Artist>,
-	artistProfile: Artist,
-	artistEvents: Array<Event>,
-	artistsError: any,
-	searchedArtists: Array<Event>,
-}
-
-type EventState = {
-	event: Event,
-	events: Array<Event>,
-	eventsError: any,
-}
-
-type UserState = {
-	isReady: boolean,
-	currentUser: User,
-	isLoggedIn: boolean,
-	userError: any
-}
-
-const defaultApp: AppState = {
+const defaultApp = {
 	searchBarValue: '',
 	displaySearch: false,
 	displayLoginModal: false,
@@ -56,7 +6,7 @@ const defaultApp: AppState = {
 	userMenuDisplayed: false
 }
 
-const defaultArtists: ArtistState = {
+const defaultArtists = {
 	artists: [],
 	artistProfile: {},
 	artistEvents: [],
@@ -64,7 +14,7 @@ const defaultArtists: ArtistState = {
 	searchedArtists: []
 }
 
-const defaultEvents: EventState = {
+const defaultEvents = {
 	event: {},
 	events: [],
 	eventsError: null
@@ -77,15 +27,12 @@ const defaultUsers = {
 	userError: null
 }
 
-
-
-export function appReducer(state: AppState = defaultApp, action: Action) {
+export function appReducer(state = defaultApp, action) {
 	switch (action.type) {
 		case 'DISPLAY_MODAL': return { ...state, [action.payload.type]: true }
 		case 'HIDE_MODAL': return { ...state, [action.payload.type]: false }
 		case 'DISPLAY_USER_MENU': return { ...state, userMenuDisplayed: true }
 		case 'HIDE_USER_MENU': return { ...state, userMenuDisplayed: false }
-
 		case 'UPDATE_SEARCH_BAR_VALUE': return { ...state, searchBarValue: action.payload.keyword }
 		case 'CLEAR_SEARCH_BAR_VALUE': return { ...state, searchBarValue: '' }
 		case 'DISPLAY_SEARCH_LIST': return { ...state, displaySearch: true }
@@ -95,13 +42,12 @@ export function appReducer(state: AppState = defaultApp, action: Action) {
 	}
 }
 
-export function artistsReducer(state: ArtistState = defaultArtists, action: Action) {
+export function artistsReducer(state = defaultArtists, action) {
 	switch (action.type) {
 		case 'FETCH_ALL_ARTISTS_SUCCEEDED': return { ...state, artists: action.payload.artists }
 		case 'FETCH_ARTIST_SUCCEEDED': return { ...state, artistProfile: action.payload.artist }
 		case 'FETCH_ARTIST_EVENTS_SUCCEEDED': return { ...state, artistEvents: action.payload.events }
 		case 'FETCH_ARTISTS_BY_KEYWORD_SUCCEEDED': return { ...state, searchedArtists: action.payload.artists }
-
 		case 'FETCH_ARTIST_FAILED':
 		case 'FETCH_ARTIST_EVENTS_FAILED':
 		case 'FETCH_ALL_ARTISTS_FAILED': return { ...state, artistsError: action.payload }
@@ -113,7 +59,7 @@ export function artistsReducer(state: ArtistState = defaultArtists, action: Acti
 	}
 }
 
-export function eventsReducer(state: EventState = defaultEvents, action: Action) {
+export function eventsReducer(state = defaultEvents, action) {
 	switch (action.type) {
 		case 'FETCH_ALL_EVENTS_SUCCEEDED': return { ...state, events: action.payload.events }
 		case 'FETCH_ALL_EVENTS_FAILED': return { ...state, eventsError: action.payload }
@@ -125,7 +71,7 @@ export function eventsReducer(state: EventState = defaultEvents, action: Action)
 	}
 }
 
-export function usersReducer(state: UserState = defaultUsers, action: Action) {
+export function usersReducer(state = defaultUsers, action) {
 	switch (action.type) {
 		case 'USER_LOGIN_SUCCEEDED':
 		case 'USER_SIGNUP_SUCCEEDED': return { ...state, ...action.payload, isLoggedIn: true }

@@ -1,13 +1,9 @@
-//@flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/index'
 import LoginForm from '../components/Forms/LoginForm'
 
-type LoginFormContainerProps = {
-	dispatch: Function
-}
-class LoginFormContainer extends Component<LoginFormContainerProps> {
+class LoginFormContainer extends Component {
 	constructor(props) {
 		super(props)
 		this.state = { email: '', password: '' }

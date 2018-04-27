@@ -1,11 +1,6 @@
-//@flow
 import React, { Component } from 'react'
-import type { Event } from '../../api/EventQueries'
 
-type Props = {
-	event: Event
-}
-export default class EventPage extends Component<Props> {
+export default class EventPage extends Component {
 	render() {
 		return (
 			<div className=''>

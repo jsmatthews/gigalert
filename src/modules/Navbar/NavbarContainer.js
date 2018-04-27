@@ -1,10 +1,6 @@
-//@flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getNavbarSelector } from '../../selectors'
-
-import type { User } from '../../api/UserQueries'
-
 import {
 	displayModal,
 	hideModal,
@@ -18,11 +14,8 @@ import {
 } from '../../actions/index'
 
 import Navbar from './Navbar'
-import type { AppState, dispatch } from '../../reducers/index'
 
-type Props = AppState & dispatch
-
-class NavbarContainer extends Component<Props> {
+class NavbarContainer extends Component {
 	constructor(props) {
 		super(props)
 
@@ -34,11 +27,11 @@ class NavbarContainer extends Component<Props> {
 		this.handleSearchBarKeyUp = this.handleSearchBarKeyUp.bind(this)
 	}
 
-	handleSearchBarInput: Function = (e): void => {
+	handleSearchBarInput(e) {
 		this.props.dispatch(updateSearchBarValue(e.target.value))
 	}
 
-	handleSearchBarKeyUp: Function = (e): void => {
+	handleSearchBarKeyUp(e) {
 		switch (e.keyCode) {
 			case 27: {
 				this.props.dispatch(clearSearchBarValue())
@@ -64,15 +57,15 @@ class NavbarContainer extends Component<Props> {
 		}
 	}
 
-	openModal: Function = (type): void => {
+	openModal(type) {
 		this.props.dispatch(displayModal(type))
 	}
 
-	closeModal: Function = (type): void => {
+	closeModal(type) {
 		this.props.dispatch(hideModal(type))
 	}
 
-	toggleUserMenu: Function = (): void => {
+	toggleUserMenu() {
 		if (this.props.userMenuDisplayed) {
 			this.props.dispatch(hideUserMenu())
 		} else {
@@ -80,7 +73,7 @@ class NavbarContainer extends Component<Props> {
 		}
 	}
 
-	hideMenu: Function = (): void => {
+	hideMenu() {
 		this.props.dispatch(hideUserMenu())
 	}
 

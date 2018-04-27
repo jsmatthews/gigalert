@@ -1,15 +1,8 @@
-//@flow
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/Search.css'
-import type { Artist } from '../../api/ArtistQueries'
 
-type SearchListRowProps = {
-	id: Number,
-	name: String,
-	handleSearchClick: Function
-}
-const SearchListRow = ({ id, name, handleSearchClick }: SearchListRowProps) => (
+const SearchListRow = ({ id, name, handleSearchClick }) => (
 	<div onClick={(e) => handleSearchClick(e)}>
 		<Link to={`/artists/${id}`} >
 			<div className='search-list-row'>
@@ -19,11 +12,7 @@ const SearchListRow = ({ id, name, handleSearchClick }: SearchListRowProps) => (
 	</div>
 )
 
-type SearchListProps = {
-	searchedArtists: Array<Artist>,
-	handleSearchClick: Function
-}
-export default class SearchList extends Component<SearchListProps> {
+export default class SearchList extends Component {
 	render() {
 		return (
 			<div className='search-list'>

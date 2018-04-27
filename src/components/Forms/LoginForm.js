@@ -1,14 +1,7 @@
-//@flow
 import React, { Component } from 'react'
 import { Form, SubmitButton, FormTextInput, FormPasswordInput } from './FormItems'
 
-type LoginFormProps = {
-	email: String,
-	password: String,
-	handleSubmit: Function,
-	handleInputChange: Function
-}
-export default class LoginForm extends Component<LoginFormProps> {
+export default class LoginForm extends Component {
 	render() {
 		return (
 			<Form>

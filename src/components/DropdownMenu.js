@@ -1,14 +1,8 @@
-//@flow
 import { Component } from 'react'
 import { createPortal } from 'react-dom'
 import { findChild } from '../helpers/ObjectHelpers'
 
-type DropDownMenuProps = {
-	hideMenu: Function,
-	children: any,
-	dropdownMenuRoot: String
-}
-export default class DropdownMenu extends Component<DropDownMenuProps> {
+export default class DropdownMenu extends Component {
 	constructor(props) {
 		super(props)
 		this.handleEventListener = this.handleEventListener.bind(this)

@@ -1,17 +1,10 @@
-//@flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchAllEvents } from '../../actions/index'
 import EventsPage from './EventsPage'
-import type { Event } from '../../api/EventQueries'
-import type { dispatch } from '../../reducers/index'
 import { getEventsSelector } from '../../selectors'
 
-type Props = dispatch & {
-	events: Array<Event>
-}
-
-class EventsPageContainer extends Component<Props> {
+class EventsPageContainer extends Component {
 	componentDidMount() {
 		this.props.dispatch(fetchAllEvents())
 	}

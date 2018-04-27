@@ -1,11 +1,7 @@
-//@flow
 import React from 'react'
 import '../../styles/Artists.css'
 
-type ArtistLinkProps = {
-	name: String
-}
-const ArtistLink = ({ name }: ArtistLinkProps) => (
+const ArtistLink = ({ name }) => (
 	<div className="artist-link">
 		<div className='artist-link-name'>
 			{name}

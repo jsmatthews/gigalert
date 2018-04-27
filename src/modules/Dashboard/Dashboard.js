@@ -1,11 +1,9 @@
-//@flow
 import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
 import '../../styles/Dashboard.css'
 import AccountSettings from './AccountSettings'
 
-type NavItemArgs = { label: string; to: string; order: string };
-const DashboardNavItem = ({ label, to, order }: NavItemArgs) => (
+const DashboardNavItem = ({ label, to, order }) => (
 	<div className="dashboard-nav-item" order={order}>
 		<NavLink className="dashboard-nav-btn" activeClassName="dashboard-nav-active" to={to}>{label}</NavLink>
 	</div>
@@ -27,11 +25,7 @@ const DashboardMain = () => (
 	</div>
 )
 
-type Props = {
-
-}
-
-export class Dashboard extends Component<Props> {
+export class Dashboard extends Component {
 	render() {
 		return (
 			<div className='page dashboard'>

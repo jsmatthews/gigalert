@@ -1,10 +1,6 @@
-//@flow
 import React from 'react'
 
-type FormProps = {
-	children: any
-}
-export const Form = (props: FormProps) => (
+export const Form = (props) => (
 	<form>
 		{
 			props.children.map(child => {
@@ -14,24 +10,14 @@ export const Form = (props: FormProps) => (
 	</form>
 )
 
-type SubmitButtonProps = {
-	onClick: Function
-}
-export const SubmitButton = ({ onClick }: SubmitButtonProps) => (
+export const SubmitButton = ({ onClick }) => (
 	<input type="submit" className="submit-button" value="Submit" onClick={(e) => onClick(e)} />
 )
 
-type FormTextInputProps = {
-	ph: String,
-	onChange: Function,
-	value: Any,
-	name: String,
-	autocomplete: Boolean
-}
-export const FormTextInput = ({ ph, onChange, value, name, autocomplete }: FormTextInputProps) => (
+export const FormTextInput = ({ ph, onChange, value, name, autocomplete }) => (
 	<input type="text" name={name} autoComplete={autocomplete} className="form-text-input" placeholder={ph} value={value} onChange={(e) => onChange(e)} />
 )
 
-export const FormPasswordInput = ({ ph, onChange, value, name, autocomplete }: FormTextInputProps) => (
+export const FormPasswordInput = ({ ph, onChange, value, name, autocomplete }) => (
 	<input type="password" name={name} autoComplete={autocomplete} className="form-text-input" placeholder={ph} value={value} onChange={(e) => onChange(e)} />
 )

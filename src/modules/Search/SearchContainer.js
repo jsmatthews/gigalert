@@ -1,16 +1,10 @@
-//@flow
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SearchList from './SearchList'
 import { hideSearch, clearSearchBarValue, clearSearchedArtists } from '../../actions/index'
-import type { dispatch } from '../../reducers/index'
-import type { Artist } from '../../api/ArtistQueries'
 import { getSearchedArtistsSelector } from '../../selectors'
 
-type Props = dispatch & {
-	searchedArtists: Array<Artist>
-}
-class SearchContainer extends Component<Props> {
+class SearchContainer extends Component {
 	constructor(props) {
 		super(props)
 		this.handleSearchClick = this.handleSearchClick.bind(this)

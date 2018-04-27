@@ -1,27 +1,15 @@
-//@flow
 import React, { Component } from 'react'
 import { createPortal } from 'react-dom'
 
 const modalRoot = document.body
 
-type ModalHeaderProps = {
-	title: String
-}
-export const ModalHeader = ({ title }: ModalHeaderProps) => (
+export const ModalHeader = ({ title }) => (
 	<div className='modal-header'>
 		{title}
 	</div>
 )
 
-type ModalProps = {
-	modalContainerStyle: String,
-	modalBackgroundStyle: String,
-	modalStyle: String,
-	closeModal: Function,
-	type: String,
-	children: Any
-}
-export class Modal extends Component<ModalProps> {
+export class Modal extends Component {
 	constructor(props) {
 		super(props)
 		this.modalContainer = document.createElement('div')

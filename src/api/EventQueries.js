@@ -1,13 +1,4 @@
-//@flow
 import gql from 'graphql-tag'
-
-export type Event = {
-	id: number;
-	title: string;
-	location: string;
-	artistId: number;
-	date: string;
-}
 
 // Return found events with all attributes
 export const eventsQuery = gql`
@@ -23,6 +14,18 @@ query fetchEvents($id: Int, $title: String, $location: String, $artistId:Int, $d
 
 export const fetchEventQuery = gql`
 query fetchEvent($id: Int, $title: String, $location: String, $artistId:Int, $date: String){
+    event(id: $id, title: $title, location: $location, artistId: $artistId, date: $date) {
+        id
+        title
+        location
+        artistId
+        date
+    }
+}`
+
+// TODO(JM): Update to include artist ID
+export const fetchArtistEventsQuery = gql`
+query fetchEvents ($id: Int, $title: String, $location: String, $artistId:Int, $date: String){
     event(id: $id, title: $title, location: $location, artistId: $artistId, date: $date) {
         id
         title

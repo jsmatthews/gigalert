@@ -1,9 +1,6 @@
-//@flow
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/ArtistProfile.css'
-import type { Artist } from '../../api/ArtistQueries'
-import type { Event } from '../../api/EventQueries'
 
 const ArtistEventsHeader = () => (
 	<div className='artist-event-header'>
@@ -11,7 +8,7 @@ const ArtistEventsHeader = () => (
 	</div>
 )
 
-const ArtistEventsTable = ({ artistEvents }: Array<Event>) => (
+const ArtistEventsTable = ({ artistEvents }) => (
 	<div className='artist-events-table'>
 		<ArtistEventsHeader />
 		<ArtistEvents events={artistEvents} />
@@ -27,12 +24,12 @@ const eventDate = (date) => {
 	return `${month} ${day}`
 }
 
-const ArtistEvents = ({ events }: Array<Event>) => {
-	let sortedEvents: Array<Event> = [].concat(events).sort((a: Event, b: Event): Event => a.date > b.date)
+const ArtistEvents = ({ events }) => {
+	let sortedEvents = [].concat(events).sort((a, b) => a.date > b.date)
 	return sortedEvents.map(event => <ArtistEvent key={event.id} {...event} />)
 }
 
-const ArtistEvent = ({ id, title, location, date }: Event) => (
+const ArtistEvent = ({ id, title, location, date }) => (
 	<Link to={`/event/${id}`} >
 		<div className='artist-event' >
 			<div className='artist-event-column'>
@@ -50,7 +47,7 @@ const ArtistEvent = ({ id, title, location, date }: Event) => (
 	</Link>
 )
 
-const ArtistImage = ({ name }: String) => (
+const ArtistImage = ({ name }) => (
 	<div className='artist-image'>
 		<div className='artist-name'>
 			{name}
@@ -58,9 +55,7 @@ const ArtistImage = ({ name }: String) => (
 	</div>
 )
 
-type Props = { artistProfile: Artist, artistEvents: Array<Event> }
-
-export default class ArtistProfile extends Component<Props> {
+export default class ArtistProfile extends Component {
 	render() {
 		return (
 			<div className='page artist-profile'>
